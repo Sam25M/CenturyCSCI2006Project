@@ -1,4 +1,4 @@
-//Modify or repalce with php.
+//Modify or replace with php.
 $(function(){
   var accountKey = window.localStorage.getItem("user");
   for(var i in authUsers){
