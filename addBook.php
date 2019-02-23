@@ -22,79 +22,79 @@
 				<!--Will be populated by php.-->
 			</nav>
 		</header>
-		<main>
+		<div class="contentdiv">
 			<!--bootstrap form, from https://getbootstrap.com/docs/4.3/components/forms/ -->
-			<form>
-  <div class="form-group row">
-    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputTitle" placeholder="Title">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputAuthor" placeholder="Author">
-    </div>
-  </div>
-	<div class="form-group row">
-    <label for="inputIsbn" class="col-sm-2 col-form-label">Isbn</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputIsbn" placeholder="Isbn#">
-    </div>
-  </div>
-	<div class="form-group row">
-    <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" id="inputPrice" placeholder="$Price" step = ".01">
-    </div>
-  </div>
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Genre</legend>
-      <div class="col-sm-10">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-          <label class="form-check-label" for="gridRadios1">
-            Computer Science
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-          <label class="form-check-label" for="gridRadios2">
-            Mathematics
-          </label>
-        </div>
-        <div class="form-check disabled">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-          <label class="form-check-label" for="gridRadios3">
-            Art
-          </label>
-        </div>
-      </div>
-    </div>
-  </fieldset>
-	<!-- SET UP CHECKBOX. came with bootstrap form, delete if unused
-  <div class="form-group row">
-    <div class="col-sm-2">Checkbox</div>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Example checkbox
-        </label>
-      </div>
-    </div>
-  </div>
--->
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" class="btn btn-primary">Sell Book</button>
-    </div>
-  </div>
-</form>
+				<form method="GET" action="#">
+			  <div class="form-group row">
+			    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title">
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputAuthor" name="inputAuthor" placeholder="Author">
+			    </div>
+			  </div>
+				<div class="form-group row">
+			    <label for="inputIsbn" class="col-sm-2 col-form-label">Isbn</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputIsbn" name="inputIsbn" placeholder="Isbn#">
+			    </div>
+			  </div>
+				<div class="form-group row">
+			    <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
+			    <div class="col-sm-10">
+			      <input type="number" class="form-control" id="inputPrice" name="inputPrice" placeholder="$Price" step = ".01">
+			    </div>
+			  </div>
+			  <fieldset class="form-group">
+			    <div class="row">
+			      <legend class="col-form-label col-sm-2 pt-0">Genre</legend>
+			      <div class="col-sm-10">
+			        <div class="form-check">
+			          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+			          <label class="form-check-label" for="gridRadios1">
+			            Computer Science
+			          </label>
+			        </div>
+			        <div class="form-check">
+			          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+			          <label class="form-check-label" for="gridRadios2">
+			            Mathematics
+			          </label>
+			        </div>
+			        <div class="form-check disabled">
+			          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+			          <label class="form-check-label" for="gridRadios3">
+			            Art
+			          </label>
+			        </div>
+			      </div>
+			    </div>
+				</fieldset>
+				<!-- SET UP CHECKBOX. came with bootstrap form, delete if unused
+			  <div class="form-group row">
+			    <div class="col-sm-2">Checkbox</div>
+			    <div class="col-sm-10">
+			      <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="gridCheck1">
+			        <label class="form-check-label" for="gridCheck1">
+			          Example checkbox
+			        </label>
+			      </div>
+			    </div>
+			  </div>
+			-->
+			  <div class="form-group row">
+			    <div class="col-sm-10">
+			      <button type="submit" class="btn btn-primary">Sell Book</button>
+			    </div>
+			  </div>
+			</form>
 
-		</main>
+		</div>
 		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
 		<!-- script tags only necessary for any bootstrap components that use javascript -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
