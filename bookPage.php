@@ -7,18 +7,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<nav id="headnav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="logIn.html">My Account</a></li>
-					<li><a href="accountReg.html">Account Registration</a></li>
-					<li><a href="cart.html">Cart</a></li>
-				</ul>
-				<h1>College Bookstore</h1>
-				<!--Will be populated by php.-->
-			</nav>
-		</header>
+		<?php include "includes/header.inc.php";?>
 		<article class="book">
 			<h2></h2>
 			<figure class="bookImg">
@@ -67,7 +56,7 @@
 				<h3>Textbook Description</h3>
 			</section>
 		</article>
-		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
+		<?php include "includes/footer.inc.php";?>
 		<script src="js/bookPages.js" type="text/javascript"></script>
 	</body>
 </html>
