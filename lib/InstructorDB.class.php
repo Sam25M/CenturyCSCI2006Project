@@ -23,13 +23,6 @@
       $pdo = null;
       return $statement;
     }
-
-    public function join($id){
-      $sql = 'SELECT Subjects.subjectId, Subjects.category, Subjects.title FROM Instructors';
-      $sql = $sql." INNER JOIN Subjects ON Subjects.instructorId=Instructors.instructorId WHERE Instructors.instructorId=".$id;
-      $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
-      return $statement->fetch();
-    }
   }
 
 ?>
