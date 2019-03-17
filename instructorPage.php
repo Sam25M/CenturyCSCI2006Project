@@ -1,8 +1,22 @@
+<?php
+	include "includes/config.inc.php";
+
+	$instructorId = null;
+	if(isset($_GET['id'])){
+		$instructorId = $_GET['id'];
+	}
+
+	$instructors = new InstructorDB($pdo);
+	$subjects = new SubjectDB($pdo);
+	$allSubjects = $subjects->getAll();
+	$instructor = $instructors->findById($instructorId);
+	$instructorName = $instructor['firstName']." ".$instructor['lastName'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title><?php echo $instructorName; ?></title>
 		<link href="css/mainStyles.css" rel="stylesheet"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
@@ -10,9 +24,17 @@
 		<?php include "includes/header.inc.php";?>
 		<!--Has a list of courses for a single instructor.-->
 		<article>
-			<h2></h2>
+			<?php
+				echo "<h2>".$instructorName."</h2>";
+			?>
 			<ul>
-				<li><a href="bookPage.html"></a></li>
+				<?php
+				foreach ($allSubjects as $item) {
+					if ($item['instructorId'] == $instructorId) {
+						echo "<li><a href=\"bookPage.php?id=".$item['subjectId']."\">".$item['category']." ".$item['subjectId']." ".$item['title']."</a></li><br>";
+					}
+				}
+				?>
 			</ul>
 		</article>
 		<?php include "includes/footer.inc.php";?>

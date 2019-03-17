@@ -1,3 +1,6 @@
+<?php 
+	include "includes/config.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -9,12 +12,10 @@
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
-		<form>
-			<input type="button" value="School Marketplace" id="schoolBtn"/>
-			<input type="button" vlaue="Student Marketplace" id="studentBtn"/>
-			<!--School Marketplace button will go to instructorList.php. Student Marketplace button will
-		go to studentMarketplace.php -->
-		</form>
+
+		<a href="instructorList.php">School Marketplace</a>
+		<a href="studentMarketplace.php">Student Marketplace</a>
+
 		<img class="library" src="images/library.jpg" alt="library">
 
 		<?php include "includes/footer.inc.php";?>
