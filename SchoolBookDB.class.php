@@ -1,0 +1,25 @@
+<?php
+  //Used to take books from school book table for the schools marketplace.
+  class SchoolBookDB{
+    private $pdo = null;
+
+    private static $baseSQL = "SELECT * FROM SchoolBooks";
+    private static $constraint = " order by title";
+
+    public function __construct($connection) {
+        $this->pdo = $connection;
+    }
+
+    public function findById($id){
+      $sql = self::$baseSQL.' WHERE subjectId='.$id;
+      $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
+      return $statement->fetch();
+    }
+
+    public function getAll(){
+      $sql = self::$baseSQL.self::$constraint;
+      $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+      return $statement;
+    }
+  }
+?>
