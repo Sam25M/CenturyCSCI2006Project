@@ -1,3 +1,9 @@
+<?php
+	include "includes/config.inc.php";
+
+	$instructors = new InstructorDB($pdo);
+	$allInstructors = $instructors->getAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,19 +14,14 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<nav id="headnav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="logIn.html">My Account</a></li>
-					<li><a href="accountReg.html">Account Registration</a></li>
-					<li><a href="cart.html">Cart</a></li>
-				</ul>
-				<h1>College Bookstore</h1>
-				<!--Will be populated by php.-->
-			</nav>
-		</header>
-
-		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
+		<?php include "includes/header.inc.php";?>
+		<ul>
+		<?php
+			foreach ($allInstructors as $item) {
+				echo "<li><a href=\"instructorPage.php?id=".$item['instructorId']."\">".$item['lastName'].", ".$item['firstName']."</a></li><br>";
+			}
+		?>
+		</ul>
+		<?php include "includes/footer.inc.php";?>
 	</body>
 </html>

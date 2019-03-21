@@ -1,31 +1,42 @@
+<?php
+	include "includes/config.inc.php";
+
+	$instructorId = null;
+	if(isset($_GET['id'])){
+		$instructorId = $_GET['id'];
+	}
+
+	$instructors = new InstructorDB($pdo);
+	$subjects = new SubjectDB($pdo);
+	$allSubjects = $subjects->getAll();
+	$instructor = $instructors->findById($instructorId);
+	$instructorName = $instructor['firstName']." ".$instructor['lastName'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title><?php echo $instructorName; ?></title>
 		<link href="css/mainStyles.css" rel="stylesheet"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<nav id="headnav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="logIn.html">My Account</a></li>
-					<li><a href="accountReg.html">Account Registration</a></li>
-					<li><a href="cart.html">Cart</a></li>
-				</ul>
-				<h1>College Bookstore</h1>
-				<!--Will be populated by php.-->
-			</nav>
-		</header>
+		<?php include "includes/header.inc.php";?>
 		<!--Has a list of courses for a single instructor.-->
 		<article>
-			<h2></h2>
+			<?php
+				echo "<h2>".$instructorName."</h2>";
+			?>
 			<ul>
-				<li><a href="bookPage.html"></a></li>
+				<?php
+				foreach ($allSubjects as $item) {
+					if ($item['instructorId'] == $instructorId) {
+						echo "<li><a href=\"bookPage.php?id=".$item['subjectId']."\">".$item['category']." ".$item['subjectId']." ".$item['title']."</a></li><br>";
+					}
+				}
+				?>
 			</ul>
 		</article>
-		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
+		<?php include "includes/footer.inc.php";?>
 	</body>
 </html>
