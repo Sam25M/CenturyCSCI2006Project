@@ -1,3 +1,7 @@
+<?php
+include "Book.class.php";
+require_once "includes/config.inc.php"; // connection info = $pdo
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -23,10 +27,77 @@
 			</nav>
 		</header>
 		<main>
+      <a href="addBook.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Post</a>
+			<ul class="marketcontent"> <!--create books as list item -->
 			<?php
-				#button I found on bootstrap
-				echo "<a href=\"addBook.php\" class=\"btn btn-primary btn-lg active\" role=\"button\" aria-pressed=\"true\">Add Post</a>";
+
+      #button I found on bootstrap
+      //echo "<a href=\"addBook.php\" class=\"btn btn-primary btn-lg active\" role=\"button\" aria-pressed=\"true\">Add Post</a>";
+			// addBook form data, split by optional other box. Inserts form data into sql table.
+			if(isset($_GET['othergenre'])){
+				if(isset($_GET['inputAuthor']) && isset($_GET['inputTitle']) && isset($_GET['inputIsbn']) && isset($_GET['gridRadios'])){
+					$author = $_GET['inputAuthor'];
+					$title = $_GET['inputTitle'];
+					$isbn = $_GET['inputIsbn'];
+					$genre = $_GET['othergenre'];
+					$copyright = $_GET['inputCopyright'];
+					$condition = $_GET['condition'];
+					$price = $_GET['inputPrice'];
+
+					$two = 2;
+
+					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+					$book->insert($pdo);
+				}
+		}else{
+			if(isset($_GET['inputAuthor']) && isset($_GET['inputTitle']) && isset($_GET['inputIsbn']) && isset($_GET['gridRadios'])){
+				$author = $_GET['inputAuthor'];
+				$title = $_GET['inputTitle'];
+				$isbn = $_GET['inputIsbn'];
+				$genre = $_GET['gridRadios'];
+				$copyright = $_GET['inputCopyright'];
+				$condition = $_GET['condition'];
+				$price = $_GET['inputPrice'];
+
+				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+				$book->insert($pdo);
+			}
+		}
+
+		// displays market books in db, allow specific LIMIT and what to sort by, returns db result set
+		function displayOffers($amt, $condition = "default"){
+			global $pdo;
+			if($condition === "default"){
+				$sql = "SELECT * FROM marketBooks LIMIT $amt";
+				$statement = $pdo->prepare($sql);
+				$statement->execute();
+				return $statement;
+			}else{
+				$sql = "SELECT * FROM marketBooks WHERE $condition LIMIT $amt";
+				$statement = $pdo->prepare($sql);
+				$statement->execute();
+				return $statement;
+			}
+		}
+
+		function sortAuthor($author){
+			$sql = "author = $author";
+			displayOffers(20, $sql);
+		}
+
+		function sortGenre($genre){
+			$sql = "category = $genre";
+			displayOffers(20, $sql);
+		}
+		// $book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+		$results = displayOffers(20);
+		foreach($results as $result){
+			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['quality'], $result['copyright']);
+			echo "$book";
+		}
+
 			 ?>
+		 </ul>
 		</main>
 		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
 		<!-- script tags only necessary for any bootstrap components that use javascript -->
