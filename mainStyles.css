@@ -1,0 +1,127 @@
+body {
+	background-image: url("../images/background.png");
+	background-size: 100%;
+	width: 100%;
+}
+
+.bookpagetable,.bookpagetable th,.bookpagetable tr,.bookpagetable td, #cartTable, #cartTable th, #cartTable td, #checkoutTable, #checkoutTable th, #checkoutTable td{
+  border: 1px solid grey;
+	border-collapse: collapse;
+  text-align: center;
+}
+#cartTable th, #cartTable td, #checkoutTable th, #checkoutTable td{
+	padding: 10px;
+}
+#cartTable th, #checkoutTable th{
+	background-color: #005580;
+	color: white;
+}
+#cartTable tr:nth-child(even), #checkoutTable tr:nth-child(even){
+	background-color: #c6d9ec;
+}
+.book{
+	margin: 5% 25%;
+}
+.bookpagetable{
+	float: right;
+}
+.library{
+	margin-left: 28%;
+	margin-right: 28%;
+	margin-top: 5%;
+}
+#instructorOptions{
+	margin-left: 45%;
+}
+#newButton, #usedButton, #addCartButton{
+	float: right;
+}
+#cartTable{
+	margin-left: 10%;
+}
+#emptyBtn{
+	margin-left: 10%;
+	margin-top: 1%;
+}
+.cart a{
+	margin-left: 30%;
+	color: black;
+	text-decoration: none;
+}
+th, td{
+	padding-top: 5px;
+}
+#headnav {
+	width: 100%;
+	background-color: #002856;
+}
+#logInForm{
+	margin: 5% 40%;
+}
+#username, #password{
+	margin: 0.5%;
+}
+h1 {
+	clear: left;
+  text-align: center;
+  background: #002856;
+  color: white;
+	font-size: 32px;
+	padding-bottom: 2%;
+}
+#headnav ul li {
+  float: left;
+}
+
+#headnav ul{
+	background-color: #002856;
+	list-style-type: none;
+}
+#headnav ul li a{
+	padding: 16px 16px;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+	display: block;
+
+}
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: #002856;
+  text-align: center;
+  color: white;
+}
+
+.enchancedTableData {
+	font-weight: bold;
+}
+.contentdiv {
+	width: 100%;
+}
+#article {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.requiredtext li a {
+	text-decoration: none;
+	color: blue;
+}
+.cart {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.instructorpage {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.marketcontent li {
+	float: left;
+	margin: 10px;
+}
+.marketcontent {
+	list-style-type: none;
+
+}
