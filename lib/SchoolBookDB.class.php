@@ -1,5 +1,5 @@
 <?php
-  //Used to take books from school book table for the schools marketplace.
+  //Used to take books from schoolbooks table for the schools marketplace.
   class SchoolBookDB{
     private $pdo = null;
 
@@ -11,7 +11,7 @@
     }
 
     public function findById($id){
-      $sql = self::$baseSQL.' WHERE subjectId='.$id;
+      $sql = self::$baseSQL.' WHERE subjectId=?';
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
       return $statement->fetch();
     }
