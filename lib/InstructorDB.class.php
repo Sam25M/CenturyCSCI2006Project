@@ -11,7 +11,7 @@
     }
 
     public function findById($id){
-      $sql = self::$baseSQL.' WHERE instructorId='.$id;
+      $sql = self::$baseSQL.' WHERE instructorId=?';
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
       $pdo = null;
       return $statement->fetch();
@@ -22,6 +22,13 @@
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
       $pdo = null;
       return $statement;
+    }
+
+    public function join($id){
+      $sql = 'SELECT Subjects.subjectId, Subjects.category, Subjects.title FROM Instructors';
+      $sql = $sql." INNER JOIN Subjects ON Subjects.instructorId=Instructors.instructorId WHERE Instructors.instructorId=?";
+      $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
+      return $statement->fetch();
     }
   }
 
