@@ -11,7 +11,7 @@
     }
 
     public function findById($id){
-      $sql = self::$baseSQL.' WHERE subjectId='.$id;
+      $sql = self::$baseSQL.' WHERE subjectId=?';
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
       return $statement->fetch();
     }
