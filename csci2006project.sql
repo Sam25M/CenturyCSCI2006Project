@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2019 at 06:28 PM
+-- Generation Time: Mar 28, 2019 at 07:48 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -53,10 +53,9 @@ CREATE TABLE `marketbooks` (
   `title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `author` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `category` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `subjectId` int(11) NOT NULL,
   `isbn` varchar(255) CHARACTER SET utf8 NOT NULL,
   `edition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `copyright` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `quality` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
   `sellerId` int(11) NOT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
