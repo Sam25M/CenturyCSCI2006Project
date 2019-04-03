@@ -1,3 +1,8 @@
+<?php
+	include "includes/config.inc.php";
+	/*After validation and database access (with new script or as part of postedBooks.php), you could redirect the user to postedBooks.php so they can see
+	that the book has been added to their list of posted books.*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,7 +19,7 @@
 		<?php include "includes/header.inc.php";?>
 		<div class="container">
 			<!--bootstrap form, from https://getbootstrap.com/docs/4.3/components/forms/ -->
-				<form method="GET" action="studentMarketplace.php">
+				<form method="GET" action="studentMarketplace.php"><!--Change to POST for validation.-->
 			  <div class="form-group row">
 			    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
 			    <div class="col-sm-6">
@@ -36,7 +41,7 @@
 				<div class="form-group row">
 			    <label for="inputEdition" class="col-sm-2 col-form-label">Edition</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="inputCopyright" name="inputCopyright" placeholder="edition">
+			      <input type="text" class="form-control" id="inputCopyright" name="inputCopyright" placeholder="edition"><!--id and name should be "inputEdition"-->
 			    </div>
 			  </div>
 				<div class="form-group row">
@@ -58,7 +63,7 @@
 				</div>
 			  <fieldset class="form-group">
 			    <div class="row">
-			      <legend class="col-form-label col-sm-2 pt-0">Category</legend>
+			      <legend class="col-form-label col-sm-2 pt-0">Category</legend><!--May want to use drop down list instead. Real school would have more categories and would get cluttered-->
 			      <div class="col-sm-10">
 			        <div class="form-check">
 			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios1" value="option1" checked>
