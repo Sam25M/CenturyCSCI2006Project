@@ -1,3 +1,6 @@
+<?php
+	include "includes/config.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,8 +11,6 @@
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
-		<!--This page will use JavaScript to generate a cart table. If cart is empty,
-		this page should have a "cart empty" message. Empty cart button-->
 		<article class="cart">
 			<h2>Shopping Cart</h2>
 			<a href="checkout.html">checkout <img src="images/cart.gif" alt="shoppingcart" width="25" height="25"></a>

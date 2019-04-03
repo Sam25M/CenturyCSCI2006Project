@@ -1,3 +1,6 @@
+<?php
+	include "includes/config.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,9 +11,6 @@
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
-		<!--This page will have a form for the customer to fill out that includes
-		name, address, and payment information. Should also have a JavaScript generated "mini-cart"
-		that lists the customers cart and the total price (including tax and shipping).-->
 		<article class="cart">
 			<h2>Checkout</h2>
 			<table id="cartTable">
