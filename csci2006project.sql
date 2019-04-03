@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2019 at 07:48 PM
+-- Generation Time: Apr 03, 2019 at 04:07 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -57,7 +57,7 @@ CREATE TABLE `marketbooks` (
   `edition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `quality` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
-  `sellerId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -143,16 +143,17 @@ CREATE TABLE `users` (
   `streetAddress` varchar(255) DEFAULT NULL,
   `city` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `zipcode` int(11) DEFAULT NULL
+  `zipcode` int(11) DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `email`, `streetAddress`, `city`, `state`, `zipcode`) VALUES
-('Tom', 'McDonald', 1, 'tomM', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 1),
-('Shelby', 'Medlock', 2, 'shelbyM', 'shelbyM@example.co', '0002 Test Ave', 'Example', 'MN', 2);
+INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `email`, `streetAddress`, `city`, `state`, `zipcode`, `phone`) VALUES
+('Tom', 'McDonald', 1, 'tomM', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 1, '111-111-1111'),
+('Shelby', 'Medlock', 2, 'shelbyM', 'shelbyM@example.co', '0002 Test Ave', 'Example', 'MN', 2, '222-222-2222');
 
 --
 -- Indexes for dumped tables
