@@ -1,3 +1,6 @@
+<?php
+	include "includes/config.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,8 +17,9 @@
 			<div>
 				<ul>
 					<li><a href="#">Payment Options</a></li>
-					<li><a href="#">Address</a></li>
+					<li><a href="#">Change Profile</a></li>
 					<li><a href="#">Order History</a></li>
+					<li><a href="postedBooks.php">Posted Books</a></li>
 					<li><a href="addBook.php">Post to Student Market</a></li>
 				</ul>
 			</div>
