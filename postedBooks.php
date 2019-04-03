@@ -1,6 +1,6 @@
 <?php
 	include "includes/config.inc.php";
-  /*List our all books that user has posted to student market*/
+  /*List of all books that user has posted to student market*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
