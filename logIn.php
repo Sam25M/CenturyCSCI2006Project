@@ -1,3 +1,6 @@
+<?php
+	include "includes/config.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,8 +8,6 @@
 		<title>Account Log In</title>
 		<link href="css/mainStyles.css" rel="stylesheet"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="js/data.js"></script>
-		<script src="js/logIn.js"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
