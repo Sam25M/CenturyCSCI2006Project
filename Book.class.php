@@ -38,13 +38,13 @@ require_once "includes/config.inc.php";
     }
     // prepared insert for book object
     public function insert($pdo){
-      $sql = "INSERT INTO Marketbooks (`title`, `author`, `category`, `isbn`, `quality`, `copyright`, `price`, `sellerId`, `bookCover`) VALUES (:title, :author, :category, :isbn, :quality, :copyright, :price, :sellerId, :bookCover) ";
+      $sql = "INSERT INTO Marketbooks (`title`, `author`, `category`, `isbn`, `condition`, `copyright`, `price`, `sellerId`, `bookCover`) VALUES (:title, :author, :category, :isbn, :condition, :copyright, :price, :sellerId, :bookCover) ";
       $statement = $pdo->prepare($sql);
       $statement->bindValue(':title', $this->title);
       $statement->bindValue(':author', $this->author);
       $statement->bindValue(':category', $this->genre);
       $statement->bindValue(':isbn', $this->isbn);
-      $statement->bindValue(':quality', $this->condition);
+      $statement->bindValue(':condition', $this->condition);
       $statement->bindValue(':copyright', $this->copyright);
       $statement->bindValue(':price', $this->price);
       $statement->bindValue(':sellerId', 2);		 // currently hard coded because no users exist
