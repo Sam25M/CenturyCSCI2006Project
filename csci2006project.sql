@@ -54,7 +54,6 @@ CREATE TABLE `marketbooks` (
   `author` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `category` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `isbn` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `edition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `quality` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
   `userId` int(11) NOT NULL,
