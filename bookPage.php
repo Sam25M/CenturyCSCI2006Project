@@ -86,7 +86,7 @@
 						}
 						if ($bookIsbn != null) {
 							echo "<tr>
-								<td><strong>Published Date</strong></td>
+								<td><strong>Condition</strong></td>
 								<td>".$quality."</td>
 							</tr>";
 						}
