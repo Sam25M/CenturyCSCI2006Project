@@ -92,7 +92,7 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 		// $book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
 		$results = displayOffers(20);
 		foreach($results as $result){
-			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['quality'], $result['copyright']);
+			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['copyright']);
 			echo "$book";
 		}
 
