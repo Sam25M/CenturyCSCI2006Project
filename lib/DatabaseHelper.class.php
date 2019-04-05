@@ -2,7 +2,7 @@
 
 class DatabaseHelper {
 
-    public static function setConnectionInfo($values=array()) {
+    /*public static function setConnectionInfo($values=array()) {
           $connString = $values[0];
           $user = $values[1];
           $password = $values[2];
@@ -10,7 +10,7 @@ class DatabaseHelper {
           $pdo = new PDO($connString, $user, $password);
           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           return $pdo;
-    }
+    }*/
 
 
     public static function runQuery($pdo, $sql, $parameters=array())     {
