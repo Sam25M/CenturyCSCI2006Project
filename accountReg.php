@@ -1,3 +1,6 @@
+<?php
+	include "includes/config.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,7 +8,6 @@
 		<title>Account Registration</title>
 		<link href="css/mainStyles.css" rel="stylesheet"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="js/index.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
@@ -16,7 +18,7 @@
 			<article id="article">
 				<h2>Account Registration</h2>
 				<div class="container">
-					<form action="#" method="get">
+					<form action="makeNewUser.php" method="post">
 						<fieldset>
 							<table>
 								<tr>
@@ -24,6 +26,10 @@
 									<td><input type="text" name="firstname" required></td>
 									<td>Last Name:</td>
 									<td><input type="text" name="lastname" required></td>
+								</tr>
+								<tr>
+									<td>Password:</td>
+									<td><input type="password" name="password" required></td>
 								</tr>
 								<tr>
 									<td>Street Address:</td>
