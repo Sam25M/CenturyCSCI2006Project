@@ -1,15 +1,14 @@
 <?php
-$bookIsbn = $_GET['isbn'];
+$postId = $_GET['postId'];
 
 $books = new AddedBookDB($pdo);
-$book = $books->findById($bookIsbn);
+$book = $books->findById($postId);
 
 $title = $book['title'];
 $price = $book['price'];
 $img = $book['bookCover'];
 $author = $book['author'];
-$edition = $book['edition'];
-$quality = $book['quality']
+$quality = $book['condition'];//quality
 $isbn = $book['isbn'];
-$userId = $book['userId'];
+$userId = $book['sellerId'];//userId
 ?>
