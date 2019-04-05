@@ -1,5 +1,5 @@
 <?php
-include "Book.class.php";//-> shouldn't be needed because of class loader in config file.
+include "lib/Book.class.php";//-> shouldn't be needed because of class loader in config file.
 require_once "includes/config.inc.php"; // connection info = $pdo
  ?>
 <!DOCTYPE html>
