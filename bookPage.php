@@ -2,13 +2,13 @@
 	include "includes/config.inc.php";
 
 	$subjectId = null; //for school market side.
-	$bookIsbn = null; //for student market side.
+	$postId = null; //for student market side.
 	if(isset($_GET['id'])){
 		//school market side.
 		include "includes/bookPageSchool.inc.php";
 	}
 
-	if(isset($_GET['isbn'])){
+	if(isset($_GET['postId'])){
 		//student market side.
 		include "includes/bookPageStudent.inc.php";
 	}
@@ -20,7 +20,7 @@
 		<title><?php if ($subjectId != null) {
 			echo $subjectTitle;
 		}
-		if ($bookIsbn != null) {
+		if ($postId != null) {
 			echo "Student Marketplace";
 		}
 		?></title>
@@ -33,7 +33,7 @@
 			<h2><?php if ($subjectId != null) {
 				echo $subjectTitle;
 			}
-			if ($bookIsbn != null) {
+			if ($postId != null) {
 				echo $title;
 			}
 			?></h2>
@@ -62,7 +62,7 @@
 								<td id=\"bUsedPrice\">$".$usedPrice."</td>
 							</tr>";
 						}
-						if($bookIsbn != null){
+						if($postId != null){
 							echo "<tr>
 								<td><strong>Price</strong></td>
 								<td id=\"bPrice\">$".$price."</td>
@@ -84,7 +84,7 @@
 								<td>".$pubDate."</td>
 							</tr>";
 						}
-						if ($bookIsbn != null) {
+						if ($postId != null) {
 							echo "<tr>
 								<td><strong>Condition</strong></td>
 								<td>".$quality."</td>
@@ -103,7 +103,7 @@
 					echo "<input type=\"submit\" id=\"newButton\" value=\"Add New to Cart\">
 					<input type=\"submit\" id=\"usedButton\" value=\"Add Used to Cart\">";
 				}
-				if ($bookIsbn != null) {
+				if ($postId != null) {
 					echo "<input type=\"submit\" id=\"addCartButton\" value=\"Add to Cart\"";
 				}
 			?>
