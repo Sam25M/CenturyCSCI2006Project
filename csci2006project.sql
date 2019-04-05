@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2019 at 06:28 PM
+-- Generation Time: Apr 05, 2019 at 04:18 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -50,13 +50,12 @@ INSERT INTO `instructors` (`firstName`, `lastName`, `instructorId`) VALUES
 --
 
 CREATE TABLE `marketbooks` (
+  `postId` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `author` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `category` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `subjectId` int(11) NOT NULL,
   `isbn` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `edition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `copyright` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `condition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
   `sellerId` int(11) NOT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
@@ -144,16 +143,17 @@ CREATE TABLE `users` (
   `streetAddress` varchar(255) DEFAULT NULL,
   `city` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `zipcode` int(11) DEFAULT NULL
+  `zipcode` int(11) DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `email`, `streetAddress`, `city`, `state`, `zipcode`) VALUES
-('Tom', 'McDonald', 1, 'tomM', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 1),
-('Shelby', 'Medlock', 2, 'shelbyM', 'shelbyM@example.co', '0002 Test Ave', 'Example', 'MN', 2);
+INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `email`, `streetAddress`, `city`, `state`, `zipcode`, `phone`) VALUES
+('Tom', 'McDonald', 1, 'tomM', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 1, '111-111-1111'),
+('Shelby', 'Medlock', 2, 'shelbyM', 'shelbyM@example.co', '0002 Test Ave', 'Example', 'MN', 2, '222-222-2222');
 
 --
 -- Indexes for dumped tables
@@ -169,7 +169,7 @@ ALTER TABLE `instructors`
 -- Indexes for table `marketbooks`
 --
 ALTER TABLE `marketbooks`
-  ADD PRIMARY KEY (`isbn`);
+  ADD PRIMARY KEY (`postId`);
 
 --
 -- Indexes for table `orders`
@@ -198,6 +198,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `marketbooks`
+--
+ALTER TABLE `marketbooks`
+  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
