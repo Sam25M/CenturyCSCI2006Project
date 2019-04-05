@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 04:07 PM
+-- Generation Time: Apr 05, 2019 at 04:18 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -50,13 +50,14 @@ INSERT INTO `instructors` (`firstName`, `lastName`, `instructorId`) VALUES
 --
 
 CREATE TABLE `marketbooks` (
+  `postId` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `author` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `category` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `isbn` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `quality` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `condition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
-  `userId` int(11) NOT NULL,
+  `sellerId` int(11) NOT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -168,7 +169,7 @@ ALTER TABLE `instructors`
 -- Indexes for table `marketbooks`
 --
 ALTER TABLE `marketbooks`
-  ADD PRIMARY KEY (`isbn`);
+  ADD PRIMARY KEY (`postId`);
 
 --
 -- Indexes for table `orders`
@@ -197,6 +198,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `marketbooks`
+--
+ALTER TABLE `marketbooks`
+  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
