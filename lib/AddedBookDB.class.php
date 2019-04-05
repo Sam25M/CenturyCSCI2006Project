@@ -11,7 +11,7 @@
     }
 
     public function findById($id){
-      $sql = self::$baseSQL.' WHERE isbn=?';
+      $sql = self::$baseSQL.' WHERE postId=?';
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
       return $statement->fetch();
     }
