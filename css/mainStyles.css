@@ -33,7 +33,7 @@ body {
 #instructorOptions{
 	margin-left: 45%;
 }
-#newButton, #usedButton{
+#newButton, #usedButton, #addCartButton{
 	float: right;
 }
 #cartTable{
@@ -116,4 +116,12 @@ footer {
 .instructorpage {
 	margin-left: 10%;
 	margin-right: 10%;
+}
+.marketcontent li {
+	float: left;
+	margin: 10px;
+}
+.marketcontent {
+	list-style-type: none;
+
 }
