@@ -18,7 +18,7 @@
 			<article id="article">
 				<h2>Account Registration</h2>
 				<div class="container">
-					<form action="#" method="post">
+					<form action="makeNewUser.php" method="post">
 						<fieldset>
 							<table>
 								<tr>
