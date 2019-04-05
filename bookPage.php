@@ -73,13 +73,13 @@
 						<td><strong>Author</strong></td>
 						<td><?php echo $author; ?></td>
 					</tr>
-					<tr>
-						<td><strong>Edition/Copyright</strong></td>
-						<td><?php echo $edition; ?></td>
-					</tr>
 					<?php
 						if ($subjectId != null) {
 							echo "<tr>
+								<td><strong>Edition/Copyright</strong></td>
+								<td>".$edition."</td>
+							</tr>
+							<tr>
 								<td><strong>Published Date</strong></td>
 								<td>".$pubDate."</td>
 							</tr>";
