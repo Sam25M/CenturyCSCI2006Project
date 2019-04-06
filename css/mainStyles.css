@@ -125,3 +125,6 @@ footer {
 	list-style-type: none;
 
 }
+.error{
+	border: 2px solid red;
+}
