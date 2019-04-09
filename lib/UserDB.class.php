@@ -16,6 +16,12 @@ class UserDB{
     return $statement->fetch();
   }
 
+  public function selectUser($email){
+    $sql = "SELECT `password`, `email` FROM Users WHERE email=?";
+    $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($email));
+    return $statement->fetch();
+  }
+
   public function getId(){
     $sql = "SELECT userId FROM Users";
   }
