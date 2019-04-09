@@ -1,3 +1,7 @@
+<?php
+	include "includes/config.inc.php";
+	include "includes/logInValidate.inc.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,8 +9,6 @@
 		<title>Account Log In</title>
 		<link href="css/mainStyles.css" rel="stylesheet"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="js/data.js"></script>
-		<script src="js/logIn.js"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
@@ -18,11 +20,11 @@
 						<table>
 							<tr>
 								<td>Username:</td>
-								<td><input type="text" name="username" id="username" placeholder="username" required><br></td>
+								<td<?php echo " class=\"".$vusername->getCssClassName()."\""; ?>><input type="text" name="username" id="username" value="<?php echo $vusername->getValue(); ?>" placeholder="email" required><br></td>
 							</tr>
 							<tr>
 								<td>Password:</td>
-								<td><input type="password" name="password" id="password" placeholder="password" required><br></td>
+								<td<?php echo " class=\"".$vpassword->getCssClassName()."\""; ?>><input type="password" name="password" id="password" placeholder="password" required><br></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" name="loginBtn" id="loginBtn" value="Log In"></td>
@@ -31,6 +33,12 @@
 					</fieldset>
 				</form>
 			</div>
+			<?php
+			if ($errors) {
+				echo "<div class=\"errorMessages\" id=\"errors\" >
+								<h3>Input errors occured</h3>".$errorMessages."</div>";
+			}
+			?>
 		</article>
 		<?php include "includes/footer.inc.php";?>
 	</body>

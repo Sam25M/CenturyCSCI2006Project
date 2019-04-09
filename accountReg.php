@@ -1,5 +1,6 @@
 <?php
 	include "includes/config.inc.php";
+	include "includes/makeNewUser.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,40 +19,40 @@
 			<article id="article">
 				<h2>Account Registration</h2>
 				<div class="container">
-					<form action="makeNewUser.php" method="post">
+					<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
 						<fieldset>
 							<table>
 								<tr>
 									<td>First Name:</td>
-									<td><input type="text" name="firstname" required></td>
+									<td<?php echo " class=\"".$vfirstname->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vfirstname->getValue(); ?>" name="firstname" required></td>
 									<td>Last Name:</td>
-									<td><input type="text" name="lastname" required></td>
+									<td<?php echo " class=\"".$vlastname->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vlastname->getValue(); ?>" name="lastname" required></td>
 								</tr>
 								<tr>
 									<td>Password:</td>
-									<td><input type="password" name="password" required></td>
+									<td<?php echo " class=\"".$vpassword->getCssClassName()."\""; ?>><input type="password" name="password" placeholder="8-15 characters" required></td>
 								</tr>
 								<tr>
 									<td>Street Address:</td>
-									<td><input type="text" name="streetaddress" required></td>
+									<td<?php echo " class=\"".$vstreetaddress->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vstreetaddress->getValue(); ?>" name="streetaddress" required></td>
 								</tr>
 								<tr>
 									<td>City:</td>
-									<td><input type="text" name="city" required></td>
+									<td<?php echo " class=\"".$vcity->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vcity->getValue(); ?>" name="city" required></td>
 								</tr>
 								<tr>
 									<td>State:</td>
-									<td><input type="text" name="state" required></td>
+									<td<?php echo " class=\"".$vstate->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vstate->getValue(); ?>" name="state" placeholder="AA" required></td>
 									<td>Zip Code:</td>
-									<td><input type="text" name="zip" required></td>
+									<td<?php echo " class=\"".$vzip->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vzip->getValue(); ?>" name="zip" placeholder="00000" required></td>
 								</tr>
 								<tr>
 									<td>Email:</td>
-									<td><input type="email" name="email" placeholder="name@domain.com" required></td>
+									<td<?php echo " class=\"".$vemail->getCssClassName()."\""; ?>><input type="email" value="<?php echo $vemail->getValue(); ?>" name="email" placeholder="name@domain.com" required></td>
 								</tr>
 								<tr>
 									<td>Phone:</td>
-									<td><input type="text" name="phone" placeholder="111-111-1111"></td>
+									<td<?php echo " class=\"".$vphone->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vphone->getValue(); ?>" name="phone" placeholder="111-111-1111" required></td>
 								</tr>
 								<tr>
 									<td><input type="submit" value="Make Account"></td>
@@ -60,6 +61,12 @@
 						</fieldset>
 					</form>
 				</div>
+				<?php
+				if ($errors) {
+					echo "<div class=\"errorMessages\" id=\"errors\" >
+									<h3>Input errors occured</h3>".$errorMessages."</div>";
+				}
+				?>
 			</article>
 		</div>
 		<?php include "includes/footer.inc.php";?>
