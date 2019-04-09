@@ -1,22 +1,6 @@
 <?php
 	include "includes/config.inc.php";
-
-	$vfirstname = new ValidationResult("", "", "", true);
-	$vlastname = new ValidationResult("", "", "", true);
-	$vpassword = new ValidationResult("", "", "", true);
-	$vstreetaddress = new ValidationResult("", "", "", true);
-	$vcity = new ValidationResult("", "", "", true);
-	$vstate = new ValidationResult("", "", "", true);
-	$vzip = new ValidationResult("", "", "", true);
-	$vemail = new ValidationResult("", "", "", true);
-  $vphone = new ValidationResult("", "", "", true);
-
-	$errors = false;
-	$errorMessages = "";
-
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		include "includes/makeNewUser.inc.php";
-	}
+	include "includes/makeNewUser.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

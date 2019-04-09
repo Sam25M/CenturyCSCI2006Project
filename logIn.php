@@ -1,5 +1,6 @@
 <?php
 	include "includes/config.inc.php";
+	include "includes/logInValidate.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +20,11 @@
 						<table>
 							<tr>
 								<td>Username:</td>
-								<td><input type="text" name="username" id="username" placeholder="username" required><br></td>
+								<td<?php echo " class=\"".$vusername->getCssClassName()."\""; ?>><input type="text" name="username" id="username" value="<?php echo $vusername->getValue(); ?>" placeholder="email" required><br></td>
 							</tr>
 							<tr>
 								<td>Password:</td>
-								<td><input type="password" name="password" id="password" placeholder="password" required><br></td>
+								<td<?php echo " class=\"".$vpassword->getCssClassName()."\""; ?>><input type="password" name="password" id="password" placeholder="password" required><br></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" name="loginBtn" id="loginBtn" value="Log In"></td>
@@ -32,6 +33,12 @@
 					</fieldset>
 				</form>
 			</div>
+			<?php
+			if ($errors) {
+				echo "<div class=\"errorMessages\" id=\"errors\" >
+								<h3>Input errors occured</h3>".$errorMessages."</div>";
+			}
+			?>
 		</article>
 		<?php include "includes/footer.inc.php";?>
 	</body>
