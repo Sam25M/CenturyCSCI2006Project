@@ -16,6 +16,12 @@
       return $statement->fetch();
     }
 
+    public function findByIsbn($isbn){
+      $sql = self::$baseSQL.' WHERE isbn=?';
+      $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($isbn));
+      return $statement->fetch();
+    }
+
     public function getAll(){
       $sql = self::$baseSQL.self::$constraint;
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
