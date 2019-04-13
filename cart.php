@@ -1,5 +1,6 @@
 <?php
 	include "includes/config.inc.php";
+	include "includes/makeCartTable.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +14,23 @@
 		<?php include "includes/header.inc.php";?>
 		<article class="cart">
 			<h2>Shopping Cart</h2>
-			<a href="checkout.html">checkout <img src="images/cart.gif" alt="shoppingcart" width="25" height="25"></a>
-			<table id="cartTable">
-			</table>
-			<input type="button" id="emptyBtn" value="Empty Cart">
+			<a href="checkout.php">Checkout <img src="images/cart.gif" alt="shoppingcart" width="25" height="25"></a>
+			<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+				<table id="cartTable">
+					<?php
+						if (!empty($cart)) {
+							echo "<thead><tr><th>Book</th><th>Price</th></tr></thead>
+										<tbody>".$cart."</tbody>";
+						}else {
+							echo "<tbody>
+										<tr><td colspan=\"2\">Cart is empty</td></tr>
+										</tbody>";
+						}
+					?>
+				</table>
+				<input type="submit" id="emptyBtn" name="emptyBtn" value="Empty Cart">
+			</form>
 		</article>
 		<?php include "includes/footer.inc.php";?>
-		<script src="js/cart_checkout.js" type="text/javascript"></script>
 	</body>
 </html>

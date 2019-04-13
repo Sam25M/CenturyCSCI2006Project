@@ -1,5 +1,6 @@
 <?php
 	include "includes/config.inc.php";
+	include "includes/makeCartTable.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,16 @@
 		<article class="cart">
 			<h2>Checkout</h2>
 			<table id="cartTable">
+				<?php
+					if (!empty($cart)) {
+						echo "<thead><tr><th>Book</th><th>Price</th></tr></thead>
+									<tbody>".$cart."</tbody>";
+					}else {
+						echo "<tbody>
+									<tr><td colspan=\"2\">Cart is empty</td></tr>
+									</tbody>";
+					}
+				?>
 			</table>
 			<form action="http://www.randyconnolly.com/tests/process.php" method="get">
 				<fieldset>
@@ -75,6 +86,5 @@
 			</form>
 		</article>
 		<?php include "includes/footer.inc.php";?>
-		<script src="js/cart_checkout.js" type="text/javascript"></script>
 	</body>
 </html>

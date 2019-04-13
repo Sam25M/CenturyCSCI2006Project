@@ -3,6 +3,8 @@
 
 	$subjectId = null; //for school market side.
 	$postId = null; //for student market side.
+	$inCart = false;
+	$postInCart = false;
 	if(isset($_GET['id'])){
 		//school market side.
 		include "includes/bookPageSchool.inc.php";
@@ -12,6 +14,8 @@
 		//student market side.
 		include "includes/bookPageStudent.inc.php";
 	}
+
+	include "includes/addToCart.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +34,14 @@
 	<body>
 		<?php include "includes/header.inc.php";?>
 		<article class="book">
+			<?php
+				if ($subjectId != null) {
+					echo "<a href=\"instructorList.php\">Back to Instructor List</a>";
+				}
+				if ($postId != null) {
+					echo "<a href=\"studentMarketplace.php\">Back to Student Marketplace</a>";
+				}
+			?>
 			<h2><?php if ($subjectId != null) {
 				echo $subjectTitle;
 			}
@@ -40,6 +52,14 @@
 			<figure class="bookImg">
 				<img src="images/<?php echo $img; ?>.jpg" alt="<?php echo $title; ?>" height="15%" width="15%">
 			</figure>
+			<form method="post" action="<?php
+																		if ($subjectId != null) {
+																			echo $_SERVER["PHP_SELF"]."?id=".$subjectId;
+																		}
+																		if ($postId != null) {
+																			echo $_SERVER["PHP_SELF"]."?postId=".$postId;
+																		}
+																	?>">
 			<table class="bookpagetable">
 				<thead>
 					<tr>
@@ -49,7 +69,7 @@
 				<tbody>
 					<tr>
 						<td><strong>Title</strong></td>
-						<td id="bTitle"><?php echo $title; ?></td>
+						<td id="bTitle" name="title"><?php echo $title; ?></td>
 					</tr>
 					<?php
 						if($subjectId != null){
@@ -73,13 +93,13 @@
 						<td><strong>Author</strong></td>
 						<td><?php echo $author; ?></td>
 					</tr>
+					<tr>
+						<td><strong>Edition/Copyright</strong></td>
+						<td><?php echo $edition; ?></td>
+					</tr>
 					<?php
 						if ($subjectId != null) {
 							echo "<tr>
-								<td><strong>Edition/Copyright</strong></td>
-								<td>".$edition."</td>
-							</tr>
-							<tr>
 								<td><strong>Published Date</strong></td>
 								<td>".$pubDate."</td>
 							</tr>";
@@ -93,18 +113,26 @@
 					?>
 					<tr>
 						<td><strong>ISBN</strong></td>
-						<td><?php echo $isbn; ?></td>
+						<td name="isbn"><?php echo $isbn; ?></td>
 					</tr>
 				</tbody>
 			</table>
-			<form method="post" action="cart.php">
+
 			<?php
-				if ($subjectId != null) {
-					echo "<input type=\"submit\" id=\"newButton\" value=\"Add New to Cart\">
-					<input type=\"submit\" id=\"usedButton\" value=\"Add Used to Cart\">";
+				if (isset($_COOKIE[$subjectId]) || $inCart) {
+					echo "<p>In Cart</p>";
+				}else {
+					if ($subjectId != null) {
+						echo "<input type=\"submit\" id=\"newButton\" name=\"newButton\" value=\"Add New to Cart\">
+						<input type=\"submit\" id=\"usedButton\" name=\"usedButton\" value=\"Add Used to Cart\">";
+					}
 				}
-				if ($postId != null) {
-					echo "<input type=\"submit\" id=\"addCartButton\" value=\"Add to Cart\"";
+				if (isset($_COOKIE['postId']) || $postInCart) {
+					echo "<p>In Cart</p>";
+				}else {
+					if ($postId != null) {
+						echo "<input type=\"submit\" id=\"addCartButton\" name=\"addCartButton\" value=\"Add to Cart\"";
+					}
 				}
 			?>
 			</form>
@@ -118,6 +146,5 @@
 			?>
 		</article>
 		<?php include "includes/footer.inc.php";?>
-		<script src="js/bookPages.js" type="text/javascript"></script>
 	</body>
 </html>
