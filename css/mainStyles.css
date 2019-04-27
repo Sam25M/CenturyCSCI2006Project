@@ -33,7 +33,7 @@ body {
 #instructorOptions{
 	margin-left: 45%;
 }
-#newButton, #usedButton{
+#newButton, #usedButton, #addCartButton{
 	float: right;
 }
 #cartTable{

@@ -11,18 +11,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<nav id="headnav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="logIn.html">My Account</a></li>
-					<li><a href="accountReg.html">Account Registration</a></li>
-					<li><a href="cart.html">Cart</a></li>
-				</ul>
-				<h1>College Bookstore</h1>
-				<!--Will be populated by php.-->
-			</nav>
-		</header>
+		<?php include "includes/header.inc.php";?>
 		<div class="container">
 			<!--bootstrap form, from https://getbootstrap.com/docs/4.3/components/forms/ -->
 				<form method="GET" action="studentMarketplace.php">
@@ -72,25 +61,25 @@
 			      <legend class="col-form-label col-sm-2 pt-0">Genre</legend>
 			      <div class="col-sm-10">
 			        <div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios1" value="option1" checked>
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios1" value="Computer Science" checked>
 			          <label class="form-check-label" for="gridRadios1">
 			            Computer Science
 			          </label>
 			        </div>
 			        <div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios2" value="option2">
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios2" value="Mathematics">
 			          <label class="form-check-label" for="gridRadios2">
 			            Mathematics
 			          </label>
 			        </div>
 							<div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios3" value="option3">
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios3" value="History">
 			          <label class="form-check-label" for="gridRadios3">
 			            History
 			          </label>
 			        </div>
 							<div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios4" value="option4">
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios4" value="Sociology">
 			          <label class="form-check-label" for="gridRadios4">
 			            Sociology
 			          </label>
@@ -131,7 +120,7 @@
 			</form>
 
 		</div>
-		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
+		<?php include "includes/footer.inc.php";?>
 		<!-- script tags only necessary for any bootstrap components that use javascript -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
