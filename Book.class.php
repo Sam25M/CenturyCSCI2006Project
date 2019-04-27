@@ -13,8 +13,8 @@ require_once "includes/config.inc.php";
     private $cover;
     private $postId;
 
-    # cover auto empty, implement image file reader or delete cover
-    function __construct($title, $author, $isbn, $genre, $price, $condition, $cover = ''){
+    #
+    function __construct($title, $author, $isbn, $genre, $price, $condition){
       $this->title = $title;
       $this->author = $author;
       $this->isbn = $isbn;
@@ -22,14 +22,14 @@ require_once "includes/config.inc.php";
       $this->genre = $genre;
       $this->price = $price;
       $this->condition = $condition;
-      //$this->postId = $postId;
+      $this->setCover($genre); // determines what pic to use
     }
 
     # toString is suppose to build the post that will be displayed
     # couldn't get css working for genre so using inline style
     public function __toString(){
       return "<li class=\"item\"><div class=\"bookContainer\">
-              <img src=\"images/book.jpg\" alt=\"$this->title\" class=\"bookSell\" height=124 width=112>
+              <img src=\"images/$this->cover\" alt=\"$this->title\" class=\"bookSell\" height=124 width=112>
       		    <div class=\"bookinfo\">
               <a href=\"bookPage.php?postId=$this->postId\">$this->title</a>
               <p> by $this->author</p>
@@ -75,6 +75,24 @@ require_once "includes/config.inc.php";
     public function setPostId($postId){$this->postId = $postId;}
 
 
+    public function getCover(){
+      return $this->cover;
+    }
+    // chooses cover depending on genre
+    public function setCover($genre){
+
+      if ($genre == "Computer Science"){
+        $this->cover = "compsci.jpg";
+      }elseif ($genre == "Mathematics"){
+        $this->cover = "math.jpg";
+      }elseif ($genre == "History"){
+        $this->cover = "history.jpg";
+      }elseif ($genre == "Sociology"){
+        $this->cover = "sociology.jpg";
+      }else{
+          $this->cover = "book.jpg";
+        }
+    }
   }
 
 ?>
