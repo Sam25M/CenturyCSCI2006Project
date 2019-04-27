@@ -1,5 +1,5 @@
 <?php
-include "Book.class.php";
+include "lib/Book.class.php";//-> shouldn't be needed because of class loader in config file.
 require_once "includes/config.inc.php"; // connection info = $pdo
  ?>
 <!DOCTYPE html>
@@ -14,18 +14,7 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<nav id="headnav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="logIn.html">My Account</a></li>
-					<li><a href="accountReg.html">Account Registration</a></li>
-					<li><a href="cart.html">Cart</a></li>
-				</ul>
-				<h1>College Bookstore</h1>
-				<!--Will be populated by php.-->
-			</nav>
-		</header>
+		<?php include "includes/header.inc.php";?>
 		<main>
       <a href="addBook.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Post</a>
 			<ul class="marketcontent"> <!--create books as list item -->
@@ -40,13 +29,13 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 					$title = $_GET['inputTitle'];
 					$isbn = $_GET['inputIsbn'];
 					$genre = $_GET['othergenre'];
-					$copyright = $_GET['inputCopyright'];
+					//$copyright = $_GET['inputCopyright'];
 					$condition = $_GET['condition'];
 					$price = $_GET['inputPrice'];
 
 					$two = 2;
 
-					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+					$book = new Book($title, $author, $isbn, $genre, $price, $condition);
 					$book->insert($pdo);
 				}
 		}else{
@@ -55,11 +44,11 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 				$title = $_GET['inputTitle'];
 				$isbn = $_GET['inputIsbn'];
 				$genre = $_GET['gridRadios'];
-				$copyright = $_GET['inputCopyright'];
+				//$copyright = $_GET['inputCopyright'];
 				$condition = $_GET['condition'];
 				$price = $_GET['inputPrice'];
 
-				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+				$book = new Book($title, $author, $isbn, $genre, $price, $condition);
 				$book->insert($pdo);
 			}
 		}
@@ -92,14 +81,15 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 		// $book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
 		$results = displayOffers(20);
 		foreach($results as $result){
-			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['copyright']);
-			echo "$book";
+			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition']);
+      $book->setPostId($result['postId']);
+      echo "$book";
 		}
 
 			 ?>
 		 </ul>
 		</main>
-		<footer>CSCI 2006 Project; Spring 2019; Baani; By: Shelby Medlock and Tom McDonald</footer>
+		<?php include "includes/footer.inc.php";?>
 		<!-- script tags only necessary for any bootstrap components that use javascript -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

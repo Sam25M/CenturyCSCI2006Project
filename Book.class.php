@@ -11,9 +11,10 @@ require_once "includes/config.inc.php";
     private $condition;
     private $copyright;
     private $cover;
+    private $postId;
 
     # cover auto empty, implement image file reader or delete cover
-    function __construct($title, $author, $isbn, $genre, $price, $condition, $copyright, $cover = ''){
+    function __construct($title, $author, $isbn, $genre, $price, $condition, $cover = ''){
       $this->title = $title;
       $this->author = $author;
       $this->isbn = $isbn;
@@ -21,31 +22,33 @@ require_once "includes/config.inc.php";
       $this->genre = $genre;
       $this->price = $price;
       $this->condition = $condition;
-      $this->copyright = $copyright;
+      //$this->postId = $postId;
     }
 
     # toString is suppose to build the post that will be displayed
+    # couldn't get css working for genre so using inline style
     public function __toString(){
       return "<li class=\"item\"><div class=\"bookContainer\">
               <img src=\"images/book.jpg\" alt=\"$this->title\" class=\"bookSell\" height=124 width=112>
-              <h6 class=\"genre\">$this->genre</h6>
       		    <div class=\"bookinfo\">
-              <h4>$this->title</h4>
-              <h5>$this->price</h5>
+              <a href=\"bookPage.php?postId=$this->postId\">$this->title</a>
+              <p> by $this->author</p>
+              <p style=\"color:orange;\">$this->genre</p>
+              <h5>\$$this->price</h5>
+
       		   </div>
       </div></li>
       ";
     }
     // prepared insert for book object
     public function insert($pdo){
-      $sql = "INSERT INTO Marketbooks (`title`, `author`, `category`, `isbn`, `condition`, `copyright`, `price`, `sellerId`, `bookCover`) VALUES (:title, :author, :category, :isbn, :condition, :copyright, :price, :sellerId, :bookCover) ";
+      $sql = "INSERT INTO Marketbooks (`title`, `author`, `category`, `isbn`, `condition`, `price`, `sellerId`, `bookCover`) VALUES (:title, :author, :category, :isbn, :condition, :price, :sellerId, :bookCover) ";
       $statement = $pdo->prepare($sql);
       $statement->bindValue(':title', $this->title);
       $statement->bindValue(':author', $this->author);
       $statement->bindValue(':category', $this->genre);
       $statement->bindValue(':isbn', $this->isbn);
       $statement->bindValue(':condition', $this->condition);
-      $statement->bindValue(':copyright', $this->copyright);
       $statement->bindValue(':price', $this->price);
       $statement->bindValue(':sellerId', 2);		 // currently hard coded because no users exist
       $statement->bindValue(':bookCover', $this->cover); // either allow user to upload own picture or link genre to default pics
@@ -67,6 +70,11 @@ require_once "includes/config.inc.php";
 
     public function getGenre(){return $this->genre;}
     public function setGenre($genre){$this->genre = $genre;}
+
+    public function getPostId(){return $this->postId;}
+    public function setPostId($postId){$this->postId = $postId;}
+
+
   }
 
 ?>
