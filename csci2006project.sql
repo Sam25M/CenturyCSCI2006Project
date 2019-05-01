@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2019 at 04:18 PM
+-- Generation Time: May 01, 2019 at 06:57 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -39,9 +39,9 @@ CREATE TABLE `instructors` (
 --
 
 INSERT INTO `instructors` (`firstName`, `lastName`, `instructorId`) VALUES
-('temp1', 'A', 1),
-('temp2', 'B', 2),
-('temp3', 'C', 3);
+('Isaac', 'Leibniz', 1),
+('Albert', 'Russell', 2),
+('Ada', 'Turing', 3);
 
 -- --------------------------------------------------------
 
@@ -57,9 +57,32 @@ CREATE TABLE `marketbooks` (
   `isbn` varchar(255) CHARACTER SET utf8 NOT NULL,
   `condition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
-  `sellerId` int(11) NOT NULL,
+  `sellerId` int(11) DEFAULT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marketbooks`
+--
+
+INSERT INTO `marketbooks` (`postId`, `title`, `author`, `category`, `isbn`, `condition`, `price`, `sellerId`, `bookCover`) VALUES
+(1, 'Comp', 'Smith', 'Computer Science', '123456789', 'New', 30.00, 2, 'book'),
+(2, 'Art', 'Burts', 'ART', '159764315', 'Good', 10.00, 2, 'book'),
+(3, 'Logic', 'Porthos', 'Mathematics', '123456789', 'Good', 50.00, 1, 'book');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetails`
+--
+
+CREATE TABLE `orderdetails` (
+  `orderDetailsId` int(11) NOT NULL,
+  `orderId` int(11) NOT NULL,
+  `isbn` varchar(255) NOT NULL,
+  `postId` int(11) DEFAULT NULL,
+  `price` double(100,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -69,8 +92,10 @@ CREATE TABLE `marketbooks` (
 
 CREATE TABLE `orders` (
   `orderId` int(11) NOT NULL,
-  `date` date DEFAULT NULL,
-  `total` int(11) DEFAULT NULL,
+  `orderDate` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `total` double(100,2) DEFAULT NULL,
+  `payMethod` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `payExpire` varchar(255) CHARACTER SET utf8 NOT NULL,
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -139,21 +164,24 @@ CREATE TABLE `users` (
   `lastName` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `userId` int(11) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `salt` varchar(255) CHARACTER SET utf8 NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `streetAddress` varchar(255) DEFAULT NULL,
+  `streetAddress` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `city` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `zipcode` int(11) DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 NOT NULL
+  `phone` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `payMethod` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `payExpire` varchar(255) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `email`, `streetAddress`, `city`, `state`, `zipcode`, `phone`) VALUES
-('Tom', 'McDonald', 1, 'tomM', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 1, '111-111-1111'),
-('Shelby', 'Medlock', 2, 'shelbyM', 'shelbyM@example.co', '0002 Test Ave', 'Example', 'MN', 2, '222-222-2222');
+INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `salt`, `email`, `streetAddress`, `city`, `state`, `zipcode`, `phone`, `payMethod`, `payExpire`) VALUES
+('Tom', 'McDonald', 1, '408962f5e224d6f4b045983b2daf09d7', 'lKewTE2L1xB10gJj', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 1, '111-111-1111', '1234123412341234', '11/20'),
+('Shelby', 'Medlock', 2, 'c7ab20c071c121b5fe680dad61f97fdd', 'a8Gij24l2MfAtarN', 'shelbyM@example.com', '0002 Test Ave', 'Example', 'MN', 2, '222-222-2222', '1234123412341234', '12/22');
 
 --
 -- Indexes for dumped tables
@@ -170,6 +198,12 @@ ALTER TABLE `instructors`
 --
 ALTER TABLE `marketbooks`
   ADD PRIMARY KEY (`postId`);
+
+--
+-- Indexes for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`orderDetailsId`);
 
 --
 -- Indexes for table `orders`
@@ -203,7 +237,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `marketbooks`
 --
 ALTER TABLE `marketbooks`
-  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
