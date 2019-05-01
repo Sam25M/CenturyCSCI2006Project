@@ -51,7 +51,7 @@
 			}
 			?></h2>
 			<figure class="bookImg">
-				<img src="images/<?php echo $img; ?>.jpg" alt="<?php echo $title; ?>" height="15%" width="15%">
+				<img src="images/<?php echo $img; ?>" alt="<?php echo $title; ?>" height="15%" width="15%">
 			</figure>
 			<form method="post" action="<?php
 																		if ($subjectId != null) {
@@ -59,7 +59,7 @@
 																		}
 																		if ($postId != null) {
 																			echo $_SERVER["PHP_SELF"]."?postId=".$postId;
-																		}//take out
+																		}
 																	?>">
 			<table class="bookpagetable">
 				<thead>

@@ -32,9 +32,8 @@
 					$genre = $_GET['othergenre'];
 					$condition = $_GET['condition'];
 					$price = $_GET['inputPrice'];
-          $cover = 'book';
 
-					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $cover, $_SESSION['user']);
+					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $_SESSION['user']);
 					$book->insert($pdo);
 				}
 		}else{
@@ -43,12 +42,10 @@
 				$title = $_GET['inputTitle'];
 				$isbn = $_GET['inputIsbn'];
 				$genre = $_GET['gridRadios'];
-				//$copyright = $_GET['inputCopyright'];
 				$condition = $_GET['condition'];
 				$price = $_GET['inputPrice'];
-        $cover = 'book';
 
-				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $cover, $_SESSION['user']);
+				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $_SESSION['user']);
 				$book->insert($pdo);
 			}
 		}
