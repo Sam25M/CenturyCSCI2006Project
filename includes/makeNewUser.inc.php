@@ -64,12 +64,14 @@
 
       //Give details to User class
       $newUser = new User($firstName, $lastName, $password, $email, $street, $city, $state, $zip, $phone, $pdo);
-
       //Call User class insertIntoDB($pdo) function to add new user to user table
       $newUser->insertIntoUserDB();
+      $user = new UserDB($pdo);
+      $userId = $user->getUserId($email);
+      $_SESSION['user'] = $userId;
 
       //Take user to myAccount.php
-      header("Location: myAccount.php");
+      header("Location: myAccount.php?user=".$userId);
     }
   }
 ?>

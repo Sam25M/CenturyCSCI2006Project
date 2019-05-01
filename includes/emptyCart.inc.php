@@ -1,5 +1,5 @@
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_COOKIE['orderDone'])) {
 
     foreach ($booksDB as $item) {
       if(isset($_COOKIE[$item['subjectId']])){
@@ -10,9 +10,18 @@
         unset($_COOKIE[$bookIsbn]);
       }
     }
-    /*if (isset($_COOKIE['postId'])) {
-      setcookie('postId', '', time()-3600);
-      unset($_COOKIE['postId']);
-    }*/
+
+    foreach ($marketDB as $item) {
+      if (isset($_COOKIE[$item['postId']])) {
+        setcookie($item['postId'], '', time()-3600);
+        unset($_COOKIE[$item['postId']]);
+      }
+    }
+
+    if (isset($_COOKIE['orderDone'])) {
+      setcookie('orderDone', '', time()-3600);
+      unset($_COOKIE['orderDone']);
+      header("Location: orderHistory.php");
+    }
   }
 ?>

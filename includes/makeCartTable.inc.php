@@ -1,6 +1,8 @@
 <?php
 $books = new SchoolBookDB($pdo);
 $booksDB = $books->getAll();
+$marketBooks = new AddedBookDB($pdo);
+$marketDB = $marketBooks->getAll();
 include "includes/emptyCart.inc.php";
 $cart = "";
 $total = null;
@@ -10,15 +12,21 @@ foreach ($booksDB as $item) {
     $book = $books->findByIsbn($bookIsbn);
     if (isset($_COOKIE[$bookIsbn])) {
       $version = $_COOKIE[$bookIsbn];
-      $cart .= makeCartRow($book, $version);
+      $cart .= makeSchoolCartRow($book, $version);
     }
+  }
+}
+foreach ($marketDB as $item) {
+  if (isset($_COOKIE[$item['postId']])) {
+    $postedBook = $marketBooks->findById($item['postId']);
+    $cart .= makeStudentCartRow($postedBook);
   }
 }
 if (!empty($cart)) {
   $cart .= makeTotalRow($total);
 }
 
-function makeCartRow($book, $version){
+function makeSchoolCartRow($book, $version){
   if ($version == 'newBook') {
     global $total;
     $total += $book['newprice'];
@@ -29,6 +37,12 @@ function makeCartRow($book, $version){
     $total += $book['usedprice'];
     return "<tr><td>".$book['title']."</td><td>$".$book['usedprice']."</td></tr>";
   }
+}
+
+function makeStudentCartRow($postedBook){
+  global $total;
+  $total += $postedBook['price'];
+  return "<tr><td>".$postedBook['title']."</td><td>$".$postedBook['price']."</td></tr>";
 }
 
 function makeTotalRow($total){
