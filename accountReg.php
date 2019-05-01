@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include "includes/config.inc.php";
 	include "includes/makeNewUser.inc.php";
 ?>
@@ -30,7 +31,7 @@
 								</tr>
 								<tr>
 									<td>Password:</td>
-									<td<?php echo " class=\"".$vpassword->getCssClassName()."\""; ?>><input type="password" name="password" placeholder="8-15 characters" required></td>
+									<td<?php echo " class=\"".$vpassword->getCssClassName()."\""; ?>><input type="password" name="password" placeholder="4-10 characters" required></td>
 								</tr>
 								<tr>
 									<td>Street Address:</td>

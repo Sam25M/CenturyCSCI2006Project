@@ -1,4 +1,9 @@
 <?php
+	session_start();
+
+	if (isset($_SESSION['user'])) {
+		header("Location: myAccount.php");
+	}
 	include "includes/config.inc.php";
 	include "includes/logInValidate.inc.php";
 ?>
@@ -14,7 +19,7 @@
 		<?php include "includes/header.inc.php";?>
 		<article>
 			<div class="container">
-				<form method="post" id="logInForm">
+				<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" id="logInForm">
 					<h2>Log In</h2>
 					<fieldset>
 						<table>

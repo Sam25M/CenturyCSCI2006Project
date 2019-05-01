@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include "includes/config.inc.php";
 
 	$subjectId = null; //for school market side.
@@ -58,7 +59,7 @@
 																		}
 																		if ($postId != null) {
 																			echo $_SERVER["PHP_SELF"]."?postId=".$postId;
-																		}
+																		}//take out
 																	?>">
 			<table class="bookpagetable">
 				<thead>
@@ -93,13 +94,13 @@
 						<td><strong>Author</strong></td>
 						<td><?php echo $author; ?></td>
 					</tr>
-					<tr>
-						<td><strong>Edition/Copyright</strong></td>
-						<td><?php echo $edition; ?></td>
-					</tr>
 					<?php
 						if ($subjectId != null) {
 							echo "<tr>
+								<td><strong>Edition/Copyright</strong></td>
+								<td>".$edition."</td>
+							</tr>
+							<tr>
 								<td><strong>Published Date</strong></td>
 								<td>".$pubDate."</td>
 							</tr>";
@@ -127,11 +128,11 @@
 						<input type=\"submit\" id=\"usedButton\" name=\"usedButton\" value=\"Add Used to Cart\">";
 					}
 				}
-				if (isset($_COOKIE['postId']) || $postInCart) {
+				if (isset($_COOKIE[$postId]) || $postInCart) {
 					echo "<p>In Cart</p>";
 				}else {
 					if ($postId != null) {
-						echo "<input type=\"submit\" id=\"addCartButton\" name=\"addCartButton\" value=\"Add to Cart\"";
+						echo "<input type=\"submit\" id=\"addCartButton\" name=\"addCartButton\" value=\"Add to Cart\">";
 					}
 				}
 			?>
