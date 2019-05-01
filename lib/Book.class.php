@@ -9,27 +9,27 @@ require_once "includes/config.inc.php";
     private $price;
     private $genre;
     private $condition;
-    private $copyright;
     private $cover;
     private $postId;
+    private $sellerId;//user
 
     # cover auto empty, implement image file reader or delete cover
-    function __construct($title, $author, $isbn, $genre, $price, $condition, $cover = 'book'){
+    function __construct($title, $author, $isbn, $genre, $price, $condition, $sellerId){
       $this->title = $title;
       $this->author = $author;
       $this->isbn = $isbn;
-      $this->price = $price;
       $this->genre = $genre;
       $this->price = $price;
       $this->condition = $condition;
-      $this->cover = $cover;
+      $this->setCover($genre); // determines what pic to use
+      $this->sellerId = $sellerId;
     }
 
     # toString is suppose to build the post that will be displayed
     # couldn't get css working for genre so using inline style
     public function __toString(){
       return "<li class=\"item\"><div class=\"bookContainer\">
-              <img src=\"images/book.jpg\" alt=\"$this->title\" class=\"bookSell\" height=124 width=112>
+              <img src=\"images/$this->cover\" alt=\"$this->title\" class=\"bookSell\" height=124 width=112>
       		    <div class=\"bookinfo\">
               <a href=\"bookPage.php?postId=$this->postId\">$this->title</a>
               <p> by $this->author</p>
@@ -50,7 +50,7 @@ require_once "includes/config.inc.php";
       $statement->bindValue(':isbn', $this->isbn);
       $statement->bindValue(':condition', $this->condition);
       $statement->bindValue(':price', $this->price);
-      $statement->bindValue(':sellerId', 2);
+      $statement->bindValue(':sellerId', $this->sellerId);
       $statement->bindValue(':bookCover', $this->cover);
       $statement->execute();
     }
@@ -74,7 +74,24 @@ require_once "includes/config.inc.php";
     public function getPostId(){return $this->postId;}
     public function setPostId($postId){$this->postId = $postId;}
 
+    public function getCover(){
+      return $this->cover;
+    }
+    // chooses cover depending on genre
+    public function setCover($genre){
 
+      if ($genre == "Computer Science"){
+        $this->cover = "compsci.jpg";
+      }elseif ($genre == "Mathematics"){
+        $this->cover = "math.jpg";
+      }elseif ($genre == "History"){
+        $this->cover = "history.jpg";
+      }elseif ($genre == "Sociology"){
+        $this->cover = "sociology.jpg";
+      }else{
+          $this->cover = "book.jpg";
+        }
+    }
   }
 
 ?>
