@@ -1,6 +1,7 @@
 <?php
-include "lib/Book.class.php";//-> shouldn't be needed because of class loader in config file.
-require_once "includes/config.inc.php"; // connection info = $pdo
+  session_start();
+  require_once "includes/config.inc.php"; // connection info = $pdo
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,13 +30,10 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 					$title = $_GET['inputTitle'];
 					$isbn = $_GET['inputIsbn'];
 					$genre = $_GET['othergenre'];
-					$copyright = $_GET['inputCopyright'];
 					$condition = $_GET['condition'];
 					$price = $_GET['inputPrice'];
 
-					$two = 2;
-
-					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $_SESSION['user']);
 					$book->insert($pdo);
 				}
 		}else{
@@ -44,11 +42,10 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 				$title = $_GET['inputTitle'];
 				$isbn = $_GET['inputIsbn'];
 				$genre = $_GET['gridRadios'];
-				$copyright = $_GET['inputCopyright'];
 				$condition = $_GET['condition'];
 				$price = $_GET['inputPrice'];
 
-				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
+				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $_SESSION['user']);
 				$book->insert($pdo);
 			}
 		}
@@ -81,8 +78,9 @@ require_once "includes/config.inc.php"; // connection info = $pdo
 		// $book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
 		$results = displayOffers(20);
 		foreach($results as $result){
-			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['copyright']);
-			echo "$book";
+			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['bookCover'], $result['sellerId']);
+      $book->setPostId($result['postId']);
+      echo "$book";
 		}
 
 			 ?>

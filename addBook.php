@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if (!isset($_SESSION['user'])) {
+		header("Location: logIn.php");
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -34,12 +41,6 @@
 			    </div>
 			  </div>
 				<div class="form-group row">
-			    <label for="inputCopyright" class="col-sm-2 col-form-label">copyright</label>
-			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="inputCopyright" name="inputCopyright" placeholder="publisher">
-			    </div>
-			  </div>
-				<div class="form-group row">
 			    <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
 			    <div class="col-sm-6">
 			      <input type="number" class="form-control" id="inputPrice" name="inputPrice" placeholder="$Price" step = ".01">
@@ -61,25 +62,25 @@
 			      <legend class="col-form-label col-sm-2 pt-0">Genre</legend>
 			      <div class="col-sm-10">
 			        <div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios1" value="option1" checked>
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios1" value="Computer Science" checked>
 			          <label class="form-check-label" for="gridRadios1">
 			            Computer Science
 			          </label>
 			        </div>
 			        <div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios2" value="option2">
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios2" value="Mathematics">
 			          <label class="form-check-label" for="gridRadios2">
 			            Mathematics
 			          </label>
 			        </div>
 							<div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios3" value="option3">
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios3" value="History">
 			          <label class="form-check-label" for="gridRadios3">
 			            History
 			          </label>
 			        </div>
 							<div class="form-check">
-			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios4" value="option4">
+			          <input class="form-check-input" type="radio" onclick="hide();" name="gridRadios" id="gridRadios4" value="Sociology">
 			          <label class="form-check-label" for="gridRadios4">
 			            Sociology
 			          </label>
