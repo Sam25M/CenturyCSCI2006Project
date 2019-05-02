@@ -10,5 +10,5 @@ $img = $book['bookCover'];
 $author = $book['author'];
 $quality = $book['condition'];//quality
 $isbn = $book['isbn'];
-$userId = $book['sellerId'];//userId
+$sellerId = $book['sellerId'];
 ?>

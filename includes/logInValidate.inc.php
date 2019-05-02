@@ -17,20 +17,28 @@
     }
 
     if (!$errors) {
+      $user = new UserDB($pdo);
+
+      function validateUser($username, $password, $user){
+        $salt = $user->getSalt($username);
+        $userId = $user->getValidateUserId($username, $password, $salt);
+        if (!empty($userId)) {
+          return $userId;
+        }
+        return false;
+      }
       //Look for user in UserDB
-      $username = $_POST['username'];
-      $password = $_POST['password'];
 
-      $users = new UserDB($pdo);
-      $user = $users->selectUser($username);
-
-      if (empty($user)) {
+      $userId = validateUser($_POST['username'], $_POST['password'], $user);
+      if ($userId == false) {
         $errors = true;
-        $errorMessages .= "<p>User not found</p>";
+        $errorMessages .= "<p>Invalid LogIn</p>";
       }
 
-      if(!empty($user) && $password == $user['password']){
-        header("Location: myAccount.php?user=".$username);//Sending username is for testing
+      if($userId != false){
+        $_SESSION['user'] = $userId;
+        header("Location: myAccount.php?user=".$userId);//Sending userId is for testing
+
       }
     }
   }
