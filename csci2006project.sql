@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2019 at 04:49 PM
+-- Generation Time: May 02, 2019 at 05:12 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -66,9 +66,8 @@ CREATE TABLE `marketbooks` (
 --
 
 INSERT INTO `marketbooks` (`postId`, `title`, `author`, `category`, `isbn`, `condition`, `price`, `sellerId`, `bookCover`) VALUES
-(1, 'Comp', 'Smith', 'Computer Science', '123456789', 'New', 30.00, 1, 'compsci.jpg'),
-(2, 'Art', 'Burts', 'ART', '159764315', 'Good', 10.00, 1, 'book.jpg'),
-(3, 'Logic', 'Porthos', 'Mathematics', '123456789', 'Good', 50.00, 1, 'math.jpg');
+(4, 'Programming', 'Smtih', 'Computer Science', '907894512489', 'Good', 40.00, 2, 'compsci.jpg'),
+(5, 'College Math', 'Reed', 'Mathematics', '90784934159', 'New', 65.00, 1, 'math.jpg');
 
 -- --------------------------------------------------------
 
@@ -92,9 +91,7 @@ INSERT INTO `orderdetails` (`orderDetailsId`, `orderId`, `isbn`, `postId`, `pric
 (1, 1, '9780134041674', NULL, 162.50),
 (2, 1, '9780470131596', NULL, 168.75),
 (3, 1, '9780131495081', NULL, 149.38),
-(4, 2, '159764315', 2, 10.00),
-(5, 2, '123456789', 1, 30.00),
-(6, 2, '123456789', 3, 50.00);
+(7, 3, '90784934159', 5, 65.00);
 
 -- --------------------------------------------------------
 
@@ -117,7 +114,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`orderId`, `orderDate`, `total`, `payMethod`, `payExpire`, `userId`) VALUES
 (1, '2019-05-02', 480.63, '1234123412341234', '12/22', 2),
-(2, '2019-05-02', 90.00, '1234123412341234', '12/22', 2);
+(3, '2019-05-02', 65.00, '1234123412341234', '12/22', 2);
 
 -- --------------------------------------------------------
 
@@ -260,19 +257,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `marketbooks`
 --
 ALTER TABLE `marketbooks`
-  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
