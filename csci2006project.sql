@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2019 at 10:17 PM
+-- Generation Time: May 02, 2019 at 04:49 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -66,8 +66,8 @@ CREATE TABLE `marketbooks` (
 --
 
 INSERT INTO `marketbooks` (`postId`, `title`, `author`, `category`, `isbn`, `condition`, `price`, `sellerId`, `bookCover`) VALUES
-(1, 'Comp', 'Smith', 'Computer Science', '123456789', 'New', 30.00, 2, 'compsci.jpg'),
-(2, 'Art', 'Burts', 'ART', '159764315', 'Good', 10.00, 2, 'book.jpg'),
+(1, 'Comp', 'Smith', 'Computer Science', '123456789', 'New', 30.00, 1, 'compsci.jpg'),
+(2, 'Art', 'Burts', 'ART', '159764315', 'Good', 10.00, 1, 'book.jpg'),
 (3, 'Logic', 'Porthos', 'Mathematics', '123456789', 'Good', 50.00, 1, 'math.jpg');
 
 -- --------------------------------------------------------
@@ -84,6 +84,18 @@ CREATE TABLE `orderdetails` (
   `price` double(100,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`orderDetailsId`, `orderId`, `isbn`, `postId`, `price`) VALUES
+(1, 1, '9780134041674', NULL, 162.50),
+(2, 1, '9780470131596', NULL, 168.75),
+(3, 1, '9780131495081', NULL, 149.38),
+(4, 2, '159764315', 2, 10.00),
+(5, 2, '123456789', 1, 30.00),
+(6, 2, '123456789', 3, 50.00);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +110,14 @@ CREATE TABLE `orders` (
   `payExpire` varchar(255) CHARACTER SET utf8 NOT NULL,
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderId`, `orderDate`, `total`, `payMethod`, `payExpire`, `userId`) VALUES
+(1, '2019-05-02', 480.63, '1234123412341234', '12/22', 2),
+(2, '2019-05-02', 90.00, '1234123412341234', '12/22', 2);
 
 -- --------------------------------------------------------
 
@@ -124,7 +144,10 @@ CREATE TABLE `schoolbooks` (
 --
 
 INSERT INTO `schoolbooks` (`title`, `author`, `category`, `subjectId`, `isbn`, `edition`, `pubDate`, `description`, `newprice`, `usedprice`, `bookCover`) VALUES
+('Physics for Scientists & Engineers with Modern Physics (4th Edition)', 'Douglas C. Giancoli', 'PHYS', 202, '9780131495081', '4th 08', '2008', 'For the calculus-based General Physics course primarily taken by engineers and science majors (including physics majors).\r\n\r\n \r\n\r\nThis long-awaited and extensive revision maintains Giancoli\'s reputation for creating carefully crafted, highly accurate and precise physics texts. Physics for Scientists and Engineers combines outstanding pedagogy with a clear and direct narrative and applications that draw the student into the physics. The new edition also features an unrivaled suite of media and on-line resources that enhance the understanding of physics.\r\n\r\n \r\n\r\nThis book is written for students. It aims to explain physics in a readable and interesting manner that is accessible and clear, and to teach students by anticipating their needs and difficulties without oversimplifying.\r\n\r\n \r\n\r\nPhysics is a description of reality, and thus each topic begins with concrete observations and experiences that students can directly relate to. We then move on to the generalizations and more formal treatment of the topic. Not only does this make the material more interesting and easier to understand, but it is closer to the way physics is actually practiced.', 270.97, 149.38, 'textbook_phys2.jpg'),
 ('Starting Out with C++ from Control Structures to Objects / 8th Edition', 'Tony Gaddis', 'CSCI', 103, '9780133769395', '8TH 15', '2015', 'This text is intended for either a one-semester accelerated introductory course or a traditional two-semester sequence covering C++ programming. It is also suitable for readers interested in a comprehensive introduction to C++ programming.\r\n\r\nTony Gaddis\'s accessible, step-by-step presentation helps beginning students understand the important details necessary to become skilled programmers at an introductory level. Gaddis motivates the study of both programming skills and the C++ programming language by presenting all the details needed to understand the \"how\" and the \"why\"--but never losing sight of the fact that most beginners struggle with this material. His approach is both gradual and highly accessible, ensuring that students understand the logic behind developing high-quality programs.\r\n\r\nIn Starting Out with C++: From Control Structures through Objects, Gaddis covers control structures, functions, arrays, and pointers before objects and classes. As with all Gaddis texts, clear and easy-to-read code listings, concise and practical real-world examples, and an abundance of exercises appear in every chapter.\r\n\r\nMyProgrammingLab for Starting Out with C++ is a total learning package. MyProgrammingLab is an online homework, tutorial, and assessment program that truly engages students in learning. It helps students better prepare for class, quizzes, and exams-resulting in better performance in the course-and provides educators a dynamic set of tools for gauging individual and class progress.', 164.10, 123.10, 'textbook_csci.jpg'),
+('Absolute Java', 'Walter Savitch, Kenrick Mock', 'CSCI', 203, '9780134041674', '6th 16', '2016', 'For courses in computer programming and engineering. Beginner to Intermediate Programming in Java Absolute Java provides a comprehensive reference to programming in the Java language. Accessible to both beginner and intermediate programmers, the text focuses around specifically using the Java language to practice programming techniques.\r\nThe Sixth Edition is extremely flexible and easily applicable to a wide range of users. Standalone and optional chapters allow instructors to adapt the text to a variety of curse content. Highly up-to-date with new content and information regarding the use of Java, this text introduces readers to the world of programming through a widely used and relevant language. ', 162.50, 121.90, 'textbook_csci2.jpg'),
+('CALCULUS,SINGLE VARIABLE', 'HUGHES-HALLETT', 'MATH', 201, '9780470131596', '5th 09', '2009', 'Calculus teachers recognize Calculus as the leading resource among the \"reform\" projects that employ the rule of four and streamline the curriculum in order to deepen conceptual understanding. The fifth edition uses all strands of the \"Rule of Four\" - graphical, numeric, symbolic/algebraic, and verbal/applied presentations - to make concepts easier to understand. The book focuses on exploring fundamental ideas rather than comprehensive coverage of multiple similar cases that are not fundamentally unique.', 225.00, 168.75, 'textbook_math2.jpg'),
 ('Calculus Single Variable/4th Edition', 'HUGHES-HALLETT', 'MATH', 101, '978047148482', '4TH 05', '2005', 'CALCULUS 4/e brings together the best of both new and traditional curricula to meet the needs of even more instructors teaching calculus. The author team\'s extensive experience teaching from both traditional and innovative books and their expertise in developing innovative problems put them in an unique position to make this new curriculum meaningful to students going into mathematics and those going into the sciences and engineering. This edition will work well for those departments who are looking for a calculus book that offers a middle ground for their calculus instructors.\r\n\r\nCALCULUS 4/e exhibits the same strengths from earlier editions including the Rule of Four, an emphasis on modeling, exposition that students can read and understand and a flexible approach to technology. The conceptual and modeling problems, praised for their creativity and variety, continue to motivate and challenge students.', 188.75, 141.60, 'textbook_math.jpg'),
 ('Physics for Scientists and Engineers with Modern Physics, Technology Update / 9th Edition', 'Raymond A. Serway, John W. Jewett', 'PHYS', 102, '9781305714892', '9TH 16', '2016', 'Achieve success in your physics course by making the most of what PHYSICS FOR SCIENTISTS AND ENGINEERS Ninth Edition Technology Edition has to offer. From a host of in-text features to a range of outstanding technology resources, you\'ll have everything you need to understand the natural forces and principles of physics. Throughout every chapter, the authors have built in a wide range of examples, exercises, and illustrations that will help you to understand the laws of physics AND succeed in your course!', 161.25, 120.95, 'textbook_phys.jpg');
 
@@ -243,13 +266,13 @@ ALTER TABLE `marketbooks`
 -- AUTO_INCREMENT for table `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
