@@ -16,20 +16,33 @@ class UserDB{
     return $statement->fetch();
   }
 
-  public function selectUser($email){
-    $sql = "SELECT `password`, `email` FROM Users WHERE email=?";
+  public function getSalt($email){
+    $sql = "SELECT salt FROM Users WHERE email=?";
     $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($email));
-    return $statement->fetch();
+    return $statement->fetchColumn();
   }
 
-  public function getId(){
-    $sql = "SELECT userId FROM Users";
+  public function getValidateUserId($email, $password, $salt){
+    $sql = "SELECT userId FROM Users WHERE email=? AND password=?";
+    $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($email, md5($password.$salt)));
+    return $statement->fetchColumn();
+  }
+
+  public function getUserId($email){
+    $sql = "SELECT userId FROM Users WHERE email=?";
+    $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($email));
+    return $statement->fetchColumn();
   }
 
   public function getAll(){
     $sql = self::$baseSQL.self::$constraint;
     $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
     return $statement;
+  }
+
+  public function setPayment($payMethod, $payExpire, $userId){
+    $sql = "UPDATE Users SET payMethod=?, payExpire=? WHERE userId=?";
+    DatabaseHelper::runQuery($this->pdo, $sql, Array($payMethod, $payExpire, $userId));
   }
 }
 ?>
