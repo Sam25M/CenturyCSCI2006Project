@@ -4,12 +4,12 @@ body {
 	width: 100%;
 }
 
-.bookpagetable,.bookpagetable th,.bookpagetable tr,.bookpagetable td, #cartTable, #cartTable th, #cartTable td, #checkoutTable, #checkoutTable th, #checkoutTable td{
+.bookpagetable,.bookpagetable th,.bookpagetable tr,.bookpagetable td, #cartTable, #cartTable th, #cartTable td, #checkoutTable, #checkoutTable th, #checkoutTable td, #detailsTable, #detailsTable th, #detailsTable td{
   border: 1px solid grey;
 	border-collapse: collapse;
   text-align: center;
 }
-#cartTable th, #cartTable td, #checkoutTable th, #checkoutTable td{
+#cartTable th, #cartTable td, #checkoutTable th, #checkoutTable td, #detailsTable th, #detailsTable td{
 	padding: 10px;
 }
 #cartTable th, #checkoutTable th{
@@ -36,7 +36,7 @@ body {
 #newButton, #usedButton, #addCartButton{
 	float: right;
 }
-#cartTable{
+#cartTable, #detailsTable{
 	margin-left: 10%;
 }
 #emptyBtn{
