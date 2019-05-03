@@ -44,5 +44,11 @@ class UserDB{
     $sql = "UPDATE Users SET payMethod=?, payExpire=? WHERE userId=?";
     DatabaseHelper::runQuery($this->pdo, $sql, Array($payMethod, $payExpire, $userId));
   }
+
+  public function getPayment($userId){
+    $sql = "SELECT payMethod FROM Users WHERE userId=?";
+    $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($userId));
+    return $statement->fetchColumn();
+  }
 }
 ?>

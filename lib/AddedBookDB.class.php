@@ -16,12 +16,6 @@
       return $statement->fetch();
     }
 
-    /*public function getPostId($sellerId, $isbn){
-      $sql = "SELECT postId FROM MarketBooks WHERE sellerId=? AND isbn=?";
-      $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($sellerId, $isbn));
-      return $statement->fetchColumn();
-    }*/
-
     public function getAll(){
       $sql = self::$baseSQL.self::$constraint;
       $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
