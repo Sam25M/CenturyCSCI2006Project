@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include "includes/config.inc.php";
-	$orders = new OrderDB($pdo);
-	$allOrders = $orders->getAll();
-	$match = false;
+  $postsDB = new AddedBookDB($pdo);
+	$allPosts = $postsDB->getAll();
+  $match = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,19 +17,19 @@
 		<?php include "includes/header.inc.php";?>
 		<article>
 			<h2>My Account</h2>
-      <h3>Order History</h3>
+			<h3>Posted Books</h3>
 			<div>
-				<?php
-					if (!empty($allOrders)) {
+        <?php
+					if (!empty($allPosts)) {
 						echo "<ul>";
-						foreach ($allOrders as $item) {
-							if ($item['userId'] == $_SESSION['user']) {
+						foreach ($allPosts as $item) {
+							if ($item['sellerId'] == $_SESSION['user']) {
 								$match = true;
-								echo "<li><a href=\"orderDetails.php?orderId=".$item['orderId']."\">".$item['orderDate']."</a></li><br>";
+								echo "<li>".$item['title']."</li>";
 							}
 						}
 						if ($match == false) {
-							echo "<li>No Orders</li>";
+							echo "<li>No books posted</li>";
 						}
 						echo "</ul>";
 					}

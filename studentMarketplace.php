@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require_once "includes/config.inc.php"; // connection info = $pdo
+  require_once "includes/config.inc.php";
 
  ?>
 <!DOCTYPE html>
@@ -75,7 +75,6 @@
 			$sql = "category = $genre";
 			displayOffers(20, $sql);
 		}
-		// $book = new Book($title, $author, $isbn, $genre, $price, $condition, $copyright);
 		$results = displayOffers(20);
 		foreach($results as $result){
 			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['bookCover'], $result['sellerId']);

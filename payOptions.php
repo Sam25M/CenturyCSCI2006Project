@@ -4,8 +4,10 @@
 
   $card = new ValidationResult("", "", "", true);
   $exp = new ValidationResult("", "", "", true);
+	$user = new UserDB($pdo);
 
   $errors = false;
+	$methodCheck = true;
   $errorMessages = "";
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -22,10 +24,16 @@
       $payMethod = $_POST['card'];
       $payExpire = $_POST['exp'];
 
-      $user = new UserDB($pdo);
       $user->setPayment($payMethod, $payExpire, $_SESSION['user']);
     }
   }
+
+	if ($user->getPayment($_SESSION['user']) == null) {
+		$payMessage = "<p>You have no card on file</p>";
+		$methodCheck = false;
+	}else {
+		$payMessage = "<p>You have a card on file</p>";
+	}
 
 ?>
 <!DOCTYPE html>
@@ -53,11 +61,14 @@
               <td<?php echo " class=\"".$exp->getCssClassName()."\""; ?>><input type="text" name="exp" placeholder="mm/yy" required><br></td>
             </tr>
             <tr>
-              <td colspan="2"><input type="submit" name="cardSubmit" value="Submit"></td>
+              <td colspan="2"><input type="submit" name="cardSubmit" value="Update"></td>
             </tr>
           </table>
         </fieldset>
         </form>
+				<?php
+					echo $payMessage;
+				?>
 			</div>
       <?php
 			if ($errors) {
