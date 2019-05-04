@@ -27,7 +27,6 @@
         }
         return false;
       }
-      //Look for user in UserDB
 
       $userId = validateUser($_POST['username'], $_POST['password'], $user);
       if ($userId == false) {
@@ -37,7 +36,7 @@
 
       if($userId != false){
         $_SESSION['user'] = $userId;
-        header("Location: myAccount.php?user=".$userId);//Sending userId is for testing
+        header("Location: myAccount.php");
 
       }
     }

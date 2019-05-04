@@ -71,7 +71,7 @@
       $_SESSION['user'] = $userId;
 
       //Take user to myAccount.php
-      header("Location: myAccount.php?user=".$userId);
+      header("Location: myAccount.php");
     }
   }
 ?>
