@@ -16,6 +16,12 @@ class OrderDB{
     return $statement->fetch();
   }
 
+  public function findByOrderId($id){
+    $sql = self::$baseSQL.' WHERE orderId=?';
+    $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
+    return $statement->fetch();
+  }
+
   public function getAll(){
     $sql = self::$baseSQL.self::$constraint;
     $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
