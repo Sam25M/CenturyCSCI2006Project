@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2019 at 05:12 PM
+-- Generation Time: May 02, 2019 at 07:00 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -32,7 +32,7 @@ CREATE TABLE `instructors` (
   `firstName` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `lastName` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `instructorId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `instructors`
@@ -59,15 +59,7 @@ CREATE TABLE `marketbooks` (
   `price` double(100,2) DEFAULT NULL,
   `sellerId` int(11) DEFAULT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `marketbooks`
---
-
-INSERT INTO `marketbooks` (`postId`, `title`, `author`, `category`, `isbn`, `condition`, `price`, `sellerId`, `bookCover`) VALUES
-(4, 'Programming', 'Smtih', 'Computer Science', '907894512489', 'Good', 40.00, 2, 'compsci.jpg'),
-(5, 'College Math', 'Reed', 'Mathematics', '90784934159', 'New', 65.00, 1, 'math.jpg');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -83,16 +75,6 @@ CREATE TABLE `orderdetails` (
   `price` double(100,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `orderdetails`
---
-
-INSERT INTO `orderdetails` (`orderDetailsId`, `orderId`, `isbn`, `postId`, `price`) VALUES
-(1, 1, '9780134041674', NULL, 162.50),
-(2, 1, '9780470131596', NULL, 168.75),
-(3, 1, '9780131495081', NULL, 149.38),
-(7, 3, '90784934159', 5, 65.00);
-
 -- --------------------------------------------------------
 
 --
@@ -106,15 +88,7 @@ CREATE TABLE `orders` (
   `payMethod` varchar(255) CHARACTER SET utf8 NOT NULL,
   `payExpire` varchar(255) CHARACTER SET utf8 NOT NULL,
   `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`orderId`, `orderDate`, `total`, `payMethod`, `payExpire`, `userId`) VALUES
-(1, '2019-05-02', 480.63, '1234123412341234', '12/22', 2),
-(3, '2019-05-02', 65.00, '1234123412341234', '12/22', 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -134,7 +108,7 @@ CREATE TABLE `schoolbooks` (
   `newprice` double(100,2) DEFAULT NULL,
   `usedprice` double(100,2) DEFAULT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `schoolbooks`
@@ -159,7 +133,7 @@ CREATE TABLE `subjects` (
   `category` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `subjectId` int(11) NOT NULL,
   `instructorId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subjects`
@@ -193,7 +167,7 @@ CREATE TABLE `users` (
   `phone` varchar(255) CHARACTER SET utf8 NOT NULL,
   `payMethod` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `payExpire` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -257,19 +231,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `marketbooks`
 --
 ALTER TABLE `marketbooks`
-  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `postId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `orderDetailsId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
