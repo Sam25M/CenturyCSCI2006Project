@@ -2,6 +2,10 @@
 	session_start();
 	include "includes/config.inc.php";
 	include "includes/makeNewUser.inc.php";
+
+	if (isset($_SESSION['user'])) {
+		header("Location: myAccount.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

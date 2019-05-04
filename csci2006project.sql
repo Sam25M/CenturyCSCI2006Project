@@ -32,7 +32,7 @@ CREATE TABLE `instructors` (
   `firstName` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `lastName` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `instructorId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `instructors`
@@ -59,7 +59,7 @@ CREATE TABLE `marketbooks` (
   `price` double(100,2) DEFAULT NULL,
   `sellerId` int(11) DEFAULT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `orders` (
   `payMethod` varchar(255) CHARACTER SET utf8 NOT NULL,
   `payExpire` varchar(255) CHARACTER SET utf8 NOT NULL,
   `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -108,7 +108,7 @@ CREATE TABLE `schoolbooks` (
   `newprice` double(100,2) DEFAULT NULL,
   `usedprice` double(100,2) DEFAULT NULL,
   `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `schoolbooks`
@@ -133,7 +133,7 @@ CREATE TABLE `subjects` (
   `category` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `subjectId` int(11) NOT NULL,
   `instructorId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subjects`
@@ -167,7 +167,7 @@ CREATE TABLE `users` (
   `phone` varchar(255) CHARACTER SET utf8 NOT NULL,
   `payMethod` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `payExpire` varchar(255) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`

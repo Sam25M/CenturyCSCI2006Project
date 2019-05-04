@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
-		<form>
+		<form id="homeBtns">
 			<input type="button" value="School Marketplace" id="schoolBtn" onclick="location.href='instructorList.php';"/>
 			<input type="button" value="Student Marketplace" id="studentBtn" onclick="location.href='studentMarketplace.php';"/>
 			<!--School Marketplace button will go to instructorList.php. Student Marketplace button will

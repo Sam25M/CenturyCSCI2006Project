@@ -45,20 +45,10 @@
 
   foreach ($cart as $item => $subArr) {
     foreach ($allOrders as $orderItem => $subOrder) {
-      echo $subOrder[0]." order id db<br>";
-      echo $subOrder[1]." order date db<br>";
-      echo $subOrder[2]." total db<br>";
-      echo $subOrder[3]." card db<br>";
-      echo $subOrder[4]." card exp db<br>";
-      echo $subOrder[5]." user id db<br>";;
       if ($subOrder[1] == $date && $subOrder[2] == $total && $subOrder[5] == $_SESSION['user']) {
         $orderId = $subOrder[0];
       }
     }
-    echo $orderId." order id<br>";
-    echo $subArr[0]." isbn<br>";
-    echo $subArr[1]." postId<br>";
-    echo $subArr[2]." price<br>";
     $bookDetails = new OrderDetails($orderId, $subArr[0], $subArr[1], $subArr[2], $pdo);
     $bookDetails->insertIntoOrderDetailsDB();
   }

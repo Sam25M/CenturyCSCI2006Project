@@ -23,10 +23,9 @@
 			<div>
 				<ul>
 					<li><a href="payOptions.php">Payment Options</a></li>
-					<li><a href="#">Change Profile</a></li>
 					<li><a href="orderHistory.php">Order History</a></li>
-					<li><a href="#">Posted Books</a></li><!--Possibly take out later-->
-					<li><a href="addBook.php">Post to Student Market</a></li><!--Possibly take out later-->
+					<li><a href="userPosts.php">Posted Books</a></li>
+					<li><a href="addBook.php">Post to Student Market</a></li>
 				</ul>
 			</div>
 		</article>
