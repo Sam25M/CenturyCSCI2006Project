@@ -39,11 +39,11 @@
 								</tr>
 								<tr>
 									<td>Street Address:</td>
-									<td<?php echo " class=\"".$vstreetaddress->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vstreetaddress->getValue(); ?>" name="streetaddress" required></td>
+									<td><input type="text" <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo "value=\"".$_POST['streetaddress']."\""; } ?> name="streetaddress" required></td>
 								</tr>
 								<tr>
 									<td>City:</td>
-									<td<?php echo " class=\"".$vcity->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vcity->getValue(); ?>" name="city" required></td>
+									<td><input type="text" <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo "value=\"".$_POST['city']."\""; } ?> name="city" required></td>
 								</tr>
 								<tr>
 									<td>State:</td>
