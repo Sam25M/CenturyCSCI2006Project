@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if (!isset($_SESSION['user'])) {
+		header("Location: logIn.php");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,35 +17,78 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<?php include "includes/header.inc.php";?>
+		<?php include "includes/header.inc.php";
+				  include "lib/ValidationResult.class.php";
+					include "lib/Book.class.php";//-> shouldn't be needed because of class loader in config file.
+					require_once "includes/config.inc.php"; // connection info = $pdo
+
+					$title = new ValidationResult("", "", "", true);
+					$author = new ValidationResult("", "", "", true);
+					$isbn = new ValidationResult("", "", "", true);
+					$copyright = new ValidationResult("", "", "", true);
+					$price = new ValidationResult("", "", "", true);
+
+  				$errorMessages = "";
+  				$errors = false;
+
+					if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+					$title = ValidationResult::checkParameter('inputTitle', '[^[\s0-9A-Za-z]+$]', "Title is required");
+					$author = ValidationResult::checkParameter('inputAuthor', '[^[\sA-Za-z]+$]', "Author is required");
+					$isbn = ValidationResult::checkParameter('inputIsbn', '[^[0-9]+$]', "Isbn is required");
+					$copyright = ValidationResult::checkParameter('inputCopyright', '[^[\s0-9A-Za-z]+$]', "Copyright is required");
+					$price = ValidationResult::checkParameter('inputPrice', '[^[0-9]+$]', "Price is required");
+
+					$errorMessages .= '<p>' . $title->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $author->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $isbn->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $copyright->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $price->getErrorMessage() . '</p>';
+
+					if (!$title->isValid() || !$author->isValid() || !$isbn->isValid() || !$copyright->isValid() || !$price->isValid()){
+				      $errors = true;
+				    }
+
+				    if ($errors == false){
+							if(isset($_POST['othergenre'])){
+								$book = new Book($_POST['inputTitle'], $_POST['inputAuthor'], $_POST['inputIsbn'], $_POST['othergenre'], $_POST['inputPrice'], $_POST['condition'], $_SESSION['user']);
+								$book->insert($pdo);
+							}else{
+								$book = new Book($_POST['inputTitle'], $_POST['inputAuthor'], $_POST['inputIsbn'], $_POST['gridRadios'], $_POST['inputPrice'], $_POST['condition'], $_SESSION['user']);
+								$book->insert($pdo);
+							}
+				      header ('Location: studentMarketplace.php');
+				    }
+					}
+					?>
 		<div class="container">
 			<!--bootstrap form, from https://getbootstrap.com/docs/4.3/components/forms/ -->
-				<form method="GET" action="studentMarketplace.php">
-			  <div class="form-group row">
+				<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+			  <div class="form-group row <?php echo $title->getCssClassName(); ?>">
 			    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
 			    <div class="col-sm-6">
 			      <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title">
 			    </div>
 			  </div>
-			  <div class="form-group row">
+			  <div class="form-group row <?php echo $author->getCssClassName(); ?>">
 			    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
 			    <div class="col-sm-6">
 			      <input type="text" class="form-control" id="inputAuthor" name="inputAuthor" placeholder="Author">
 			    </div>
 			  </div>
-				<div class="form-group row">
-			    <label for="inputIsbn" class="col-sm-2 col-form-label">Isbn</label>
+				<div class="form-group row <?php echo $isbn->getCssClassName(); ?>">
+			    <label for="inputIsbn" class="col-sm-2 col-form-label ">Isbn</label>
 			    <div class="col-sm-6">
 			      <input type="text" class="form-control" id="inputIsbn" name="inputIsbn" placeholder="Isbn#">
 			    </div>
 			  </div>
-				<div class="form-group row">
+				<div class="form-group row <?php echo $copyright->getCssClassName(); ?>">
 			    <label for="inputCopyright" class="col-sm-2 col-form-label">copyright</label>
 			    <div class="col-sm-6">
 			      <input type="text" class="form-control" id="inputCopyright" name="inputCopyright" placeholder="publisher">
 			    </div>
 			  </div>
-				<div class="form-group row">
+				<div class="form-group row <?php echo $price->getCssClassName(); ?>">
 			    <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
 			    <div class="col-sm-6">
 			      <input type="number" class="form-control" id="inputPrice" name="inputPrice" placeholder="$Price" step = ".01">
@@ -117,6 +166,12 @@
 			      <button type="submit" class="btn btn-primary">Sell Book</button>
 			    </div>
 			  </div>
+				<?php
+				if ($errors) {
+				echo "<div class=\"errorMessages\" id=\"errors\" >
+								<h3>Input errors occured</h3>".$errorMessages."</div>";
+			}
+			?>
 			</form>
 
 		</div>

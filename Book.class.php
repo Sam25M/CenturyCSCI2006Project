@@ -9,20 +9,20 @@ require_once "includes/config.inc.php";
     private $price;
     private $genre;
     private $condition;
-    private $copyright;
     private $cover;
     private $postId;
+    private $sellerId;//user
 
-    #
-    function __construct($title, $author, $isbn, $genre, $price, $condition){
+    # cover auto empty, implement image file reader or delete cover
+    function __construct($title, $author, $isbn, $genre, $price, $condition, $sellerId){
       $this->title = $title;
       $this->author = $author;
       $this->isbn = $isbn;
-      $this->price = $price;
       $this->genre = $genre;
       $this->price = $price;
       $this->condition = $condition;
       $this->setCover($genre); // determines what pic to use
+      $this->sellerId = $sellerId;
     }
 
     # toString is suppose to build the post that will be displayed
@@ -50,8 +50,8 @@ require_once "includes/config.inc.php";
       $statement->bindValue(':isbn', $this->isbn);
       $statement->bindValue(':condition', $this->condition);
       $statement->bindValue(':price', $this->price);
-      $statement->bindValue(':sellerId', 2);		 // currently hard coded because no users exist
-      $statement->bindValue(':bookCover', $this->cover); // either allow user to upload own picture or link genre to default pics
+      $statement->bindValue(':sellerId', $this->sellerId);
+      $statement->bindValue(':bookCover', $this->cover);
       $statement->execute();
     }
 
@@ -73,7 +73,6 @@ require_once "includes/config.inc.php";
 
     public function getPostId(){return $this->postId;}
     public function setPostId($postId){$this->postId = $postId;}
-
 
     public function getCover(){
       return $this->cover;
