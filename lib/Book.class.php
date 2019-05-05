@@ -2,7 +2,6 @@
 require_once "includes/config.inc.php";
   #php Book class for creating Books
   class Book {
-    #used price?
     private $title;
     private $author;
     private $isbn;
