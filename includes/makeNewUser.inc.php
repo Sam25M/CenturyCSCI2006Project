@@ -23,12 +23,6 @@
     $vpassword = ValidationResult::checkParameter('password', '[^[a-zA-Z0-9_-]{4,10}$]', 'Invalid password, please use between 4 and 10 characters');
     $errorMessages .= '<p>'.$vpassword->getErrorMessage().'</p>';
 
-    //$vstreetaddress = ValidationResult::checkParameter('streetaddress', '[^(\d{4}\s){1}([a-zA-Z]\s)+$]', 'Invalid streetaddress');
-    //$errorMessages .= '<p>'.$vstreetaddress->getErrorMessage().'</p>';
-
-    //$vcity = ValidationResult::checkParameter('city', '[^(\s*)([a-zA-Z]\s)+$]', 'Invalid city');
-    //$errorMessages .= '<p>'.$vcity->getErrorMessage().'</p>';
-
     $vstate = ValidationResult::checkParameter('state', '[^[A-Z]{2}$]', 'Invalid state, must be in short form -> AA');
     $errorMessages .= '<p>'.$vstate->getErrorMessage().'</p>';
 
@@ -42,10 +36,8 @@
     $errorMessages .= '<p>'.$vphone->getErrorMessage().'</p>';
 
     if (!$vfirstname->isValid() || !$vlastname->isValid() || !$vpassword->isValid()
-          //|| !$vstreetaddress->isValid()
-          //|| !$vcity->isValid()
           || !$vstate->isValid()
-          //|| !$vzip->isValid()
+          || !$vzip->isValid()
           || !$vemail->isValid()
           || !$vphone->isValid()) {
       $errors = true;
