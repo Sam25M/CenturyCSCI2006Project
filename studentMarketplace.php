@@ -48,7 +48,10 @@
 		foreach($results as $result){
 			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['bookCover'], $result['sellerId']);
       $book->setPostId($result['postId']);
-      echo "$book";
+      $book->setInstock($result['instock']);
+      if ($book->getInstock() == 'yes') {
+        echo "$book";
+      }  
 		}
 
 			 ?>

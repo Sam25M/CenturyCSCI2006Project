@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2019 at 07:00 PM
+-- Generation Time: May 06, 2019 at 04:52 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -58,7 +58,8 @@ CREATE TABLE `marketbooks` (
   `condition` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `price` double(100,2) DEFAULT NULL,
   `sellerId` int(11) DEFAULT NULL,
-  `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+  `bookCover` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `instock` varchar(255) CHARACTER SET utf8 DEFAULT 'yes'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -175,7 +176,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`firstName`, `lastName`, `userId`, `password`, `salt`, `email`, `streetAddress`, `city`, `state`, `zipcode`, `phone`, `payMethod`, `payExpire`) VALUES
 ('Tom', 'McDonald', 1, '408962f5e224d6f4b045983b2daf09d7', 'lKewTE2L1xB10gJj', 'tomM@example.com', '0001 Test Ave', 'Example', 'MN', 10001, '111-111-1111', '1234123412341234', '11/20'),
-('Shelby', 'Medlock', 2, 'c7ab20c071c121b5fe680dad61f97fdd', 'a8Gij24l2MfAtarN', 'shelbyM@example.com', '0002 Test Ave', 'Example', 'MN', 20002, '222-222-2222', '2345234523452345', '12/22');
+('Shelby', 'Medlock', 2, 'c7ab20c071c121b5fe680dad61f97fdd', 'a8Gij24l2MfAtarN', 'shelbyM@example.com', '0002 Test Ave', 'Example', 'MN', 20002, '222-222-2222', '2345234523452345', '11/23');
 
 --
 -- Indexes for dumped tables
