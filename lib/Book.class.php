@@ -2,7 +2,6 @@
 require_once "includes/config.inc.php";
   #php Book class for creating Books
   class Book {
-    #used price?
     private $title;
     private $author;
     private $isbn;
@@ -12,6 +11,7 @@ require_once "includes/config.inc.php";
     private $cover;
     private $postId;
     private $sellerId;//user
+    private $instock;
 
     # cover auto empty, implement image file reader or delete cover
     function __construct($title, $author, $isbn, $genre, $price, $condition, $sellerId){
@@ -73,6 +73,9 @@ require_once "includes/config.inc.php";
 
     public function getPostId(){return $this->postId;}
     public function setPostId($postId){$this->postId = $postId;}
+
+    public function getInstock(){return $this->instock;}
+    public function setInstock($instock){$this->instock = $instock;}
 
     public function getCover(){
       return $this->cover;

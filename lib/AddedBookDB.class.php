@@ -31,5 +31,10 @@
         return false;
       }
     }
+
+    public function updateInstock($instock, $id){
+      $sql = "UPDATE MarketBooks SET instock=? WHERE postId=?";
+      DatabaseHelper::runQuery($this->pdo, $sql, Array($instock, $id));
+    }
   }
 ?>
