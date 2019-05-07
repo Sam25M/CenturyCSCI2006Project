@@ -5,18 +5,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Cart</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
 		<article class="cart">
 			<h2>Shopping Cart</h2>
-			<a href="checkout.php">Checkout <img src="images/cart.gif" alt="shoppingcart" width="25" height="25"></a>
 			<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-				<table id="cartTable">
+				<div class="w3-row-padding">
+				<div class="w3-col s12"><table id="cartTable">
 					<?php
 						if (!empty($cart)) {
 							echo "<thead><tr><th>Book</th><th>Price</th></tr></thead>
@@ -27,8 +28,12 @@
 										</tbody>";
 						}
 					?>
-				</table>
-				<input type="submit" id="emptyBtn" name="emptyBtn" value="Empty Cart">
+				</table></div>
+				</div>
+				<div class="w3-row-padding">
+				<div class="w3-col s6"><input type="submit" id="emptyBtn" name="emptyBtn" value="Empty Cart"></div>
+				<div class="w3-col s6"><a href="checkout.php">Checkout <img src="images/cart.gif" alt="shoppingcart" width="25" height="25"></a></div>
+				</div>
 			</form>
 		</article>
 		<?php include "includes/footer.inc.php";?>

@@ -13,16 +13,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Checkout</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
 		<article class="cart">
 			<h2>Checkout</h2>
-			<table id="cartTable">
+			<div class="w3-row-padding">
+			<div class="w3-col s6 w3-center">
+			<table id="checkoutTable">
 				<?php
 					if (!empty($cart)) {
 						echo "<thead><tr><th>Book</th><th>Price</th></tr></thead>
@@ -34,7 +37,9 @@
 					}
 				?>
 			</table>
-			<form action="checkoutProcess.php" method="post">
+			</div>
+			<div class="w3-col s6 w3-center">
+			<form id="checkoutForm" action="checkoutProcess.php" method="post">
 				<fieldset>
 					<div id="shipAddress">
 						<h3>Shipping Address</h3>
@@ -93,6 +98,8 @@
 					</div>
 				</fieldset>
 			</form>
+		</div>
+		</div>
 		</article>
 		<?php include "includes/footer.inc.php";?>
 	</body>

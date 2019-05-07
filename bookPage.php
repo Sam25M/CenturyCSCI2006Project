@@ -21,7 +21,6 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title><?php if ($subjectId != null) {
 			echo $subjectTitle;
 		}
@@ -29,12 +28,14 @@
 			echo "Student Marketplace";
 		}
 		?></title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
-		<article class="book">
+		<article class="book w3-container">
 			<?php
 				if ($subjectId != null) {
 					echo "<a href=\"instructorList.php\">Back to Instructor List</a>";
@@ -50,9 +51,12 @@
 				echo $title;
 			}
 			?></h2>
+			<div class="w3-row-padding">
+			<div class="w3-col s6 w3-center">
 			<figure class="bookImg">
-				<img src="images/<?php echo $img; ?>" alt="<?php echo $title; ?>" height="15%" width="15%">
+				<img src="images/<?php echo $img; ?>" alt="<?php echo $title; ?>" height="35%" width="35%">
 			</figure>
+			</div>
 			<form method="post" action="<?php
 																		if ($subjectId != null) {
 																			echo $_SERVER["PHP_SELF"]."?id=".$subjectId;
@@ -61,6 +65,7 @@
 																			echo $_SERVER["PHP_SELF"]."?postId=".$postId;
 																		}
 																	?>">
+			<div class="w3-col s6 w3-center">
 			<table class="bookpagetable">
 				<thead>
 					<tr>
@@ -118,7 +123,9 @@
 					</tr>
 				</tbody>
 			</table>
-
+		</div>
+		</div>
+		<div class="w3-row-padding">
 			<?php
 				if (isset($_COOKIE[$subjectId]) || $inCart) {
 					echo "<p>In Cart</p>";
@@ -136,15 +143,18 @@
 					}
 				}
 			?>
+		</div>
 			</form>
+			<div class="w3-row-padding">
 			<?php
 				if($subjectId != null){
-					echo "<section>
+					echo "<section class=\"description\">
 						<h3>Textbook Description</h3>
 						<p>".$text."</P>
 					</section>";
 				}
 			?>
+		</div>
 		</article>
 		<?php include "includes/footer.inc.php";?>
 	</body>

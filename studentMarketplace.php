@@ -5,11 +5,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<title>Student Marketplace</title>
+    <title>Student Marketplace</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<!--bootstrap css stylesheet, this is making our css slightly inflated for some reason -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="js/index.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
@@ -51,7 +52,7 @@
       $book->setInstock($result['instock']);
       if ($book->getInstock() == 'yes') {
         echo "$book";
-      }  
+      }
 		}
 
 			 ?>

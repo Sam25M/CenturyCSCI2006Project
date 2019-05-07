@@ -9,11 +9,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Add a Book to Sell</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<!--bootstrap css stylesheet, this is making our css slightly inflated for some reason -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="js/index.js" type="text/javascript"></script>
 		<script src="js/radio.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -62,25 +63,25 @@
 				<form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 			  <div class="form-group row">
 			    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-			    <div class="col-sm-6">
+			    <div class="col-sm-6 <?php echo $title->getCssClassName(); ?>">
 			      <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title">
 			    </div>
 			  </div>
 			  <div class="form-group row">
 			    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
-			    <div class="col-sm-6">
+			    <div class="col-sm-6 <?php echo $author->getCssClassName(); ?>">
 			      <input type="text" class="form-control" id="inputAuthor" name="inputAuthor" placeholder="Author">
 			    </div>
 			  </div>
 				<div class="form-group row">
 			    <label for="inputIsbn" class="col-sm-2 col-form-label">Isbn</label>
-			    <div class="col-sm-6">
+			    <div class="col-sm-6 <?php echo $isbn->getCssClassName(); ?>">
 			      <input type="text" class="form-control" id="inputIsbn" name="inputIsbn" placeholder="Isbn#">
 			    </div>
 			  </div>
 				<div class="form-group row">
 			    <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
-			    <div class="col-sm-6">
+			    <div class="col-sm-6 <?php echo $price->getCssClassName(); ?>">
 			      <input type="number" class="form-control" id="inputPrice" name="inputPrice" placeholder="$Price" step = ".01">
 			    </div>
 			  </div>

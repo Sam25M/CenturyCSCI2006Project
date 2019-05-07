@@ -15,15 +15,16 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title><?php echo $instructorName; ?></title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<?php include "includes/header.inc.php";?>
 		<!--Has a list of courses for a single instructor.-->
-		<article>
+		<article class="w3-container">
 			<?php
 				echo "<h2>".$instructorName."</h2>";
 			?>
