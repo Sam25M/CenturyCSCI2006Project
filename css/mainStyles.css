@@ -19,22 +19,22 @@ body {
 #cartTable tr:nth-child(even), #checkoutTable tr:nth-child(even){
 	background-color: #c6d9ec;
 }
-.book{
+/*.book{
 	margin: 5% 25%;
 }
 .bookpagetable{
 	float: right;
-}
+}*/
 .library{
-	margin-left: 28%;
-	margin-right: 28%;
-	margin-top: 5%;
+	/*margin-left: 28%;
+	margin-right: 28%;*/
+	margin-top: 3%;
 }
-#homeBtns{
+/*#homeBtns{
 	margin-left: 38%;
 	margin-right: 28%;
 	margin-top: 5%;
-}
+}*/
 #schoolBtn, #studentBtn{
 	background-color: #555555;
 	border: none;
@@ -44,6 +44,13 @@ body {
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
+	margin-top: 5%;
+}
+#schoolBtn{
+	margin-left:60%;
+}
+#studentBtn{
+	margin-right: 60%;
 }
 #schoolBtn:hover, #studentBtn:hover {
   background-color: white;
@@ -56,14 +63,14 @@ body {
 	float: right;
 }
 #cartTable, #detailsTable{
-	margin-left: 10%;
+	margin-left: 25%;
 }
 #emptyBtn{
-	margin-left: 10%;
+	margin-left: 35%;
 	margin-top: 1%;
 }
 .cart a{
-	margin-left: 30%;
+	margin-left: 35%;
 	color: black;
 	text-decoration: none;
 }
@@ -105,7 +112,7 @@ h1 {
 
 }
 footer {
-  position: fixed;
+	position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
@@ -142,6 +149,9 @@ footer {
 }
 .marketcontent {
 	list-style-type: none;
+}
+.description{
+	margin-bottom: 5%;
 }
 .error{
 	border: 2px solid red;
