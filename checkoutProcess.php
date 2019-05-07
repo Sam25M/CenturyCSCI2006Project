@@ -27,6 +27,7 @@
   foreach ($marketDB as $item) {
     if (isset($_COOKIE[$item['postId']])) {
       $postedBook = $marketBooks->findById($item['postId']);
+      $marketBooks->updateInstock('no', $postedBook['postId']);
       getStudentBookTotal($postedBook);
     }
   }
@@ -34,14 +35,6 @@
   $newOrder = new Order($date, $total, $payMethod, $payExpire, $_SESSION['user'], $pdo);
   $newOrder->insertIntoOrderDB();
   $allOrders = $orders->getAll();
-
-  foreach ($cart as $key => $value) {
-    foreach ($value as $key2 => $value2) {
-      echo "Key: ".$key2." Value: ".$value2."<br>";
-    }
-
-  }
-  echo "Total: ".$total."<br>";
 
   foreach ($cart as $item => $subArr) {
     foreach ($allOrders as $orderItem => $subOrder) {

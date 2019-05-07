@@ -3,25 +3,64 @@
 	if (!isset($_SESSION['user'])) {
 		header("Location: logIn.php");
 	}
+	include "includes/config.inc.php"; // connection info = $pdo
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Add a Book to Sell</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<!--bootstrap css stylesheet, this is making our css slightly inflated for some reason -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="js/index.js" type="text/javascript"></script>
 		<script src="js/radio.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<?php include "includes/header.inc.php";?>
+		<?php include "includes/header.inc.php";
+
+
+					$title = new ValidationResult("", "", "", true);
+					$author = new ValidationResult("", "", "", true);
+					$isbn = new ValidationResult("", "", "", true);
+					$price = new ValidationResult("", "", "", true);
+
+  				$errorMessages = "";
+  				$errors = false;
+
+					if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+					$title = ValidationResult::checkParameter('inputTitle', '[^[\s0-9A-Za-z]+$]', "Title is required");
+					$author = ValidationResult::checkParameter('inputAuthor', '[^[\sA-Za-z]+$]', "Author is required");
+					$isbn = ValidationResult::checkParameter('inputIsbn', '[^[0-9]+$]', "Isbn is required");
+					$price = ValidationResult::checkParameter('inputPrice', '[^[0-9]+$]', "Price is required");
+
+					$errorMessages .= '<p>' . $title->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $author->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $isbn->getErrorMessage() . '</p>';
+					$errorMessages .= '<p>' . $price->getErrorMessage() . '</p>';
+
+					if (!$title->isValid() || !$author->isValid() || !$isbn->isValid() || !$price->isValid()){
+				      $errors = true;
+				    }
+
+				    if ($errors == false){
+							if(isset($_POST['othergenre'])){
+								$book = new Book($_POST['inputTitle'], $_POST['inputAuthor'], $_POST['inputIsbn'], $_POST['othergenre'], $_POST['inputPrice'], $_POST['condition'], $_SESSION['user']);
+								$book->insert($pdo);
+							}else{
+								$book = new Book($_POST['inputTitle'], $_POST['inputAuthor'], $_POST['inputIsbn'], $_POST['gridRadios'], $_POST['inputPrice'], $_POST['condition'], $_SESSION['user']);
+								$book->insert($pdo);
+							}
+				      header ('Location: studentMarketplace.php');
+				    }
+					}
+					?>
 		<div class="container">
 			<!--bootstrap form, from https://getbootstrap.com/docs/4.3/components/forms/ -->
-				<form method="GET" action="studentMarketplace.php">
+				<form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 			  <div class="form-group row">
 			    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
 			    <div class="col-sm-6">
@@ -118,6 +157,12 @@
 			      <button type="submit" class="btn btn-primary">Sell Book</button>
 			    </div>
 			  </div>
+				<?php
+				if ($errors) {
+				echo "<div class=\"errorMessages\" id=\"errors\" >
+								<h3>Input errors occured</h3>".$errorMessages."</div>";
+			}
+			?>
 			</form>
 
 		</div>

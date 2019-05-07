@@ -10,9 +10,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Account Registration</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
@@ -39,11 +40,11 @@
 								</tr>
 								<tr>
 									<td>Street Address:</td>
-									<td<?php echo " class=\"".$vstreetaddress->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vstreetaddress->getValue(); ?>" name="streetaddress" required></td>
+									<td><input type="text" <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo "value=\"".$_POST['streetaddress']."\""; } ?> name="streetaddress" required></td>
 								</tr>
 								<tr>
 									<td>City:</td>
-									<td<?php echo " class=\"".$vcity->getCssClassName()."\""; ?>><input type="text" value="<?php echo $vcity->getValue(); ?>" name="city" required></td>
+									<td><input type="text" <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo "value=\"".$_POST['city']."\""; } ?> name="city" required></td>
 								</tr>
 								<tr>
 									<td>State:</td>

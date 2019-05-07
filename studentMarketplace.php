@@ -1,16 +1,16 @@
 <?php
-  session_start();
   require_once "includes/config.inc.php";
 
  ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Student Marketplace</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<!--bootstrap css stylesheet, this is making our css slightly inflated for some reason -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="css/mainStyles.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="js/index.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
@@ -20,36 +20,6 @@
       <a href="addBook.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Post</a>
 			<ul class="marketcontent"> <!--create books as list item -->
 			<?php
-
-      #button I found on bootstrap
-      //echo "<a href=\"addBook.php\" class=\"btn btn-primary btn-lg active\" role=\"button\" aria-pressed=\"true\">Add Post</a>";
-			// addBook form data, split by optional other box. Inserts form data into sql table.
-			if(isset($_GET['othergenre'])){
-				if(isset($_GET['inputAuthor']) && isset($_GET['inputTitle']) && isset($_GET['inputIsbn']) && isset($_GET['gridRadios'])){
-					$author = $_GET['inputAuthor'];
-					$title = $_GET['inputTitle'];
-					$isbn = $_GET['inputIsbn'];
-					$genre = $_GET['othergenre'];
-					$condition = $_GET['condition'];
-					$price = $_GET['inputPrice'];
-
-					$book = new Book($title, $author, $isbn, $genre, $price, $condition, $_SESSION['user']);
-					$book->insert($pdo);
-				}
-		}else{
-			if(isset($_GET['inputAuthor']) && isset($_GET['inputTitle']) && isset($_GET['inputIsbn']) && isset($_GET['gridRadios'])){
-				$author = $_GET['inputAuthor'];
-				$title = $_GET['inputTitle'];
-				$isbn = $_GET['inputIsbn'];
-				$genre = $_GET['gridRadios'];
-				$condition = $_GET['condition'];
-				$price = $_GET['inputPrice'];
-
-				$book = new Book($title, $author, $isbn, $genre, $price, $condition, $_SESSION['user']);
-				$book->insert($pdo);
-			}
-		}
-
 		// displays market books in db, allow specific LIMIT and what to sort by, returns db result set
 		function displayOffers($amt, $condition = "default"){
 			global $pdo;
@@ -79,7 +49,10 @@
 		foreach($results as $result){
 			$book = new Book($result['title'], $result['author'], $result['isbn'], $result['category'], $result['price'], $result['condition'], $result['bookCover'], $result['sellerId']);
       $book->setPostId($result['postId']);
-      echo "$book";
+      $book->setInstock($result['instock']);
+      if ($book->getInstock() == 'yes') {
+        echo "$book";
+      }
 		}
 
 			 ?>
